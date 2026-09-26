@@ -1,0 +1,1621 @@
+<title>Босоногая Чайка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Neucha&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+/* Босоногая Чайка — интернет-магазин керамики с мезенской росписью.
+   Структура и типографика — по референсу Behance «Homme | Internet shop»:
+   светлое поле, заголовки капителью Arsenal SC, текст Inter, кнопки-пилюли, тонкие линии.
+   Палитра — из главного фото: киноварь и сажа мезенской росписи, белая глазурь, серый бетон. */
+
+:root{
+  --bg:#fbf9f5;
+  --paper:#ffffff;
+  --ink:#221c1b;
+  --ink-2:#5c5350;
+  --line:#e0d8ce;
+  --line-2:#c9bdb0;
+  --red:#c4271d;
+  --red-deep:#a01e16;
+  --red-soft:#f5e5e1;
+  --concrete:#a6adb6;
+  --dark:#1c1818;
+  --cream:#efe7de;
+  --f-head:"Neucha","Comic Sans MS","Segoe Print",cursive;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --gut:clamp(16px,4vw,56px);
+  --wrap:1200px;
+  --hh:72px;
+  --fs-text:1rem;
+  --fs-note:.875rem;
+  --fs-h4:1.25rem;
+  --fs-h3:1.5rem;
+  --lh-text:1.6;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--fs-text)/var(--lh-text) var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:16px;top:-60px;z-index:200;background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;text-decoration:none;font-size:var(--fs-note)}
+.skip:focus{top:12px}
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic--sm{width:18px;height:18px}
+.sprite{position:absolute}
+.about__p{margin-top:18px;max-width:34em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+.num{font-variant-numeric:tabular-nums}
+.nw{white-space:nowrap}
+
+/* ---------- типографика ---------- */
+.h1,.h2{font-family:var(--f-head);font-weight:400;text-transform:uppercase;letter-spacing:0.006em;color:var(--ink)}
+.h1{font-size:clamp(2.3rem,3.7vw,3.6rem);line-height:1.06}
+.h1 span{display:block}
+.h2{font-size:clamp(2.3rem,4.6vw,3.7rem);line-height:1.08;text-wrap:balance}
+.lead{font-size:var(--fs-text);line-height:var(--lh-text);max-width:34em}
+.muted{color:var(--ink-2)}
+
+/* ---------- кнопки ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:48px;padding:0 30px;border:1px solid transparent;border-radius:999px;background:none;font:500 var(--fs-note)/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.btn--red{background:var(--red);color:#fff}
+.btn--red:hover{background:var(--red-deep)}
+.btn--line{border-color:var(--ink);color:var(--ink)}
+.btn--line:hover{background:var(--ink);color:#fff}
+.btn--sm{min-height:44px;padding:0 22px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:.22em;text-decoration-color:var(--line-2);font-size:var(--fs-text)}
+.link:hover{text-decoration-color:var(--red)}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border:1px solid var(--line-2);border-radius:999px;background:transparent;font:400 var(--fs-note)/1 var(--f-body);transition:border-color .2s,background .2s}
+.pill:hover{border-color:var(--ink)}
+.pill[aria-pressed=true]{border-color:var(--red);color:var(--red)}
+.pill[aria-pressed=true] .ic{fill:currentColor}
+select.pill{appearance:none;-webkit-appearance:none;padding-right:40px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23221c1b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center}
+
+/* ---------- шапка ---------- */
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(251,249,245,.94);-webkit-backdrop-filter:saturate(1.2) blur(10px);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+.hdr__in{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut);height:var(--hh);display:flex;align-items:center;gap:clamp(16px,3vw,40px)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.logo svg{width:36px;height:36px;flex:none}
+.logo b{white-space:nowrap;font:400 clamp(1.288rem,1.904vw,1.568rem)/1 var(--f-head);letter-spacing:0.032em;text-transform:uppercase;font-weight:400}
+.nav{display:flex;flex:none;gap:clamp(18px,2.6vw,36px);margin-left:auto}
+.nav a{position:relative;white-space:nowrap;padding:10px 0;font:400 var(--fs-h4)/1 var(--f-head);letter-spacing:0.063em;text-transform:uppercase;text-decoration:none}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr__tel{display:flex;align-items:center;gap:8px;font-size:var(--fs-text);text-decoration:none;white-space:nowrap;color:var(--ink-2)}
+.hdr__tel:hover{color:var(--ink)}
+.cartbtn{position:relative;display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--line-2);border-radius:50%;background:none;flex:none;transition:border-color .2s}
+.cartbtn:hover{border-color:var(--ink)}
+.cartbtn i{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--red);color:#fff;font:600 12px/20px var(--f-body);font-style:normal;text-align:center}
+.burger{display:none;align-items:center;gap:10px;height:46px;padding:0 4px 0 0;border:0;background:none;font:400 var(--fs-h4)/1 var(--f-head);letter-spacing:0.063em;text-transform:uppercase}
+
+/* ---------- главный экран ---------- */
+.hero{position:relative;background:var(--concrete);overflow:hidden;min-height:clamp(560px,50vw,740px);display:flex}
+.hero__media{position:absolute;top:0;right:0;bottom:0;aspect-ratio:16/9;max-width:100%}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:right center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);mask-image:linear-gradient(90deg,transparent 0,#000 16%)}
+.hero__copy{position:relative;z-index:1;width:100%;max-width:var(--wrap);margin:0 auto;padding:clamp(48px,6vw,96px) var(--gut) clamp(96px,10.5vw,160px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.hero__copy .lead{margin-top:26px;max-width:26em}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.hero .btn--line{border-color:rgba(34,28,27,.7)}
+
+/* ---------- полоса фактов ---------- */
+.facts{border-bottom:1px solid var(--line)}
+.facts ul{max-width:var(--wrap);margin:0 auto;padding:26px var(--gut);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.facts li{font-size:var(--fs-note);line-height:1.5;color:var(--ink-2)}
+.facts b{display:block;margin-bottom:6px;font:400 var(--fs-h4)/1.2 var(--f-head);letter-spacing:0.023em;text-transform:uppercase;color:var(--ink)}
+
+/* ---------- узор между блоками ---------- */
+.frieze{height:54px;margin-block:clamp(40px,6vw,76px);background:url(img/frieze.svg) repeat-x 0 0/auto 100%}
+.frieze--light{background-image:url(img/frieze-light.svg);margin-block:0}
+
+/* ---------- секции ---------- */
+section[id]{scroll-margin-top:calc(var(--hh) + 8px)}
+.sec{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.sec--pad{padding-block:clamp(8px,2vw,24px)}
+
+/* ---------- чем занимаемся ---------- */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,88px);align-items:start}
+.about .lead{margin-top:24px}
+.acts{display:grid;margin-top:38px;border-top:1px solid var(--line)}
+.act{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.act svg{grid-row:1/3;width:36px;height:36px;margin-top:2px;stroke:var(--red);stroke-width:1.4}
+.act h3{font:400 var(--fs-h3)/1.2 var(--f-head);letter-spacing:0.023em;text-transform:uppercase;margin-bottom:6px}
+.act p{font-size:var(--fs-text);line-height:var(--lh-text);color:var(--ink-2)}
+.photo{position:sticky;top:calc(var(--hh) + 24px)}
+.photo__frame{position:relative;isolation:isolate;padding:0 18px 18px 0}
+.photo__frame::before{content:"";position:absolute;inset:18px 0 0 18px;border:1px solid var(--red);border-radius:4px;z-index:-1}
+.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:46% 40%;border-radius:4px;background:#e9e5df}
+.photo figcaption{margin-top:16px;max-width:32em;font-size:var(--fs-note);color:var(--ink-2)}
+
+/* ---------- каталог ---------- */
+.cat__head{text-align:center}
+.cat__head .h2{display:block}
+.cat__head p{margin:16px auto 0;max-width:36em;color:var(--ink-2)}
+.tabs{display:flex;justify-content:center;flex-wrap:wrap;margin:36px 0 24px;border-block:1px solid var(--line)}
+.tab{position:relative;padding:18px clamp(16px,2.4vw,30px);border:0;background:none;font:400 clamp(1.176rem,1.792vw,1.456rem)/1 var(--f-head);letter-spacing:0.041em;text-transform:uppercase;color:var(--ink-2);transition:color .2s}
+.tab+.tab::before{content:"";position:absolute;left:0;top:50%;height:22px;width:1px;background:var(--line-2);transform:translateY(-50%)}
+.tab:hover{color:var(--ink)}
+.tab[aria-pressed=true]{color:var(--ink)}
+.tab[aria-pressed=true]::after{content:"";position:absolute;left:clamp(16px,2.4vw,30px);right:clamp(16px,2.4vw,30px);bottom:9px;height:2px;background:var(--red)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;margin-bottom:36px}
+.bar__count{font-size:var(--fs-note);color:var(--ink-2)}
+.bar__tools{display:flex;gap:10px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 32px}
+.card{display:flex;flex-direction:column;gap:6px;min-width:0}
+.card__media{position:relative}
+.card__media .heart{position:absolute;top:10px;right:10px;width:42px;height:42px;border-color:transparent;background:rgba(251,249,245,.94)}
+.card__media .heart:hover{border-color:var(--ink)}
+.card__media .heart[aria-pressed=true]{border-color:var(--red)}
+.card__img{position:relative;display:block;width:100%;aspect-ratio:1;padding:0;border:0;border-radius:4px;overflow:hidden;background:#e9e5df}
+.card__img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card__img img{transform:scale(1.035)}
+.card__name{margin-top:12px;text-wrap:balance;font:400 var(--fs-h3)/1.15 var(--f-head);letter-spacing:0.009em}
+.card__name button{display:block;padding:0;border:0;background:none;text-align:left;font:inherit;letter-spacing:inherit}
+.card__name button:hover{color:var(--red)}
+.card__kind{font-size:var(--fs-note);line-height:1.45;color:var(--ink-2)}
+.card__price{margin-top:6px;font:500 var(--fs-text)/1.2 var(--f-body);font-variant-numeric:tabular-nums}
+.card__price small{font-weight:400;font-size:var(--fs-note);color:var(--ink-2);margin-left:4px}
+.card__row{display:flex;margin-top:auto;padding-top:12px}
+.card__row .btn{flex:1}
+.heart{display:grid;place-items:center;flex:none;width:46px;height:46px;border:1px solid var(--line-2);border-radius:50%;background:none;transition:border-color .2s,color .2s}
+.heart:hover{border-color:var(--ink)}
+.heart[aria-pressed=true]{color:var(--red);border-color:var(--red)}
+.heart[aria-pressed=true] .ic{fill:currentColor}
+.empty{grid-column:1/-1;padding:64px 0;text-align:center;color:var(--ink-2)}
+
+/* ---------- отзывы ---------- */
+.rev{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,6vw,96px);align-items:start}
+.rev__aside{position:sticky;top:calc(var(--hh) + 32px)}
+.score{display:flex;align-items:flex-end;gap:14px;margin-top:32px}
+.score b{font:400 clamp(4.5rem,9vw,7.5rem)/.85 var(--f-head);color:var(--red);letter-spacing:0.005em}
+.score span{padding-bottom:6px;font-size:var(--fs-note);line-height:1.5;color:var(--ink-2)}
+.stars{display:flex;gap:4px;margin-top:14px;color:var(--red)}
+.stars svg{width:20px;height:20px;fill:currentColor}
+.rev__aside .btn{margin-top:28px}
+.rev__list{column-count:2;column-gap:clamp(28px,4vw,56px)}
+.q{break-inside:avoid;padding:22px 0 34px;border-top:1px solid var(--line-2)}
+.q blockquote{font:400 var(--fs-text)/var(--lh-text) var(--f-body)}
+.q figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:16px}
+.q .who{font:400 var(--fs-h4)/1.2 var(--f-head);letter-spacing:0.032em;text-transform:uppercase}
+.q .when{font-size:var(--fs-note);color:var(--ink-2)}
+.src{margin-top:8px;font-size:var(--fs-note);color:var(--ink-2)}
+
+/* ---------- контакты ---------- */
+.contacts{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,80px);align-items:start}
+.dl{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr);gap:22px 24px;margin-top:36px}
+.dl dt{padding-top:3px;font:400 var(--fs-text)/1.5 var(--f-head);letter-spacing:0.059em;text-transform:uppercase;color:var(--ink-2)}
+.dl dd{font-size:var(--fs-text);line-height:var(--lh-text)}
+.dl dd small{display:block;margin-top:4px;font-size:var(--fs-note);color:var(--ink-2)}
+.dl a{text-decoration-color:var(--line-2);text-underline-offset:.22em}
+.dl a:hover{text-decoration-color:var(--red)}
+.tel{font:400 var(--fs-h3)/1.2 var(--f-head);letter-spacing:0.018em;white-space:nowrap}
+.msgs{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.map__frame{position:relative;isolation:isolate;padding:0 18px 18px 0}
+.map__frame::before{content:"";position:absolute;inset:18px 0 0 18px;border:1px solid var(--red);border-radius:4px;z-index:-1}
+.map__box{position:relative;border-radius:4px;overflow:hidden;background:#e9e5df}
+.map__box img{width:100%;aspect-ratio:1280/768;object-fit:cover;filter:grayscale(1) contrast(.9) brightness(1.06)}
+.map__pin{position:absolute;left:59.7%;top:39.3%;width:48px;height:60px;transform:translate(-50%,-100%);filter:drop-shadow(0 6px 8px rgba(34,28,27,.28))}
+.map__act{position:absolute;left:16px;bottom:16px;box-shadow:0 8px 20px rgba(34,28,27,.18)}
+.map figcaption{margin-top:14px;max-width:34em;font-size:var(--fs-note);line-height:1.5;color:var(--ink-2)}
+.map figcaption a{text-underline-offset:.2em}
+
+/* ---------- подвал ---------- */
+.ftr{margin-top:clamp(56px,8vw,96px);padding-top:22px;background:var(--dark);color:var(--cream)}
+.ftr .frieze--light{height:42px;margin:0}
+.ftr__in{max-width:var(--wrap);margin:0 auto;padding:44px var(--gut) 24px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px 48px;align-items:center}
+.ftr .logo b{color:var(--cream)}
+.ftr__c{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:flex-start;padding-top:22px;border-top:1px solid rgba(239,231,222,.16);font-size:var(--fs-note);color:rgba(239,231,222,.72)}
+.ftr__c a{text-underline-offset:.22em}
+.ftr__req{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut) 40px;font-size:var(--fs-note);line-height:1.5;color:rgba(239,231,222,.6)}
+.ftr__tel{font:400 var(--fs-h4)/1.3 var(--f-head);letter-spacing:0.032em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.ftr__tel:hover{text-decoration:underline;text-underline-offset:.25em}
+.ftr :focus-visible{outline-color:var(--cream)}
+
+/* ---------- мобильное меню ---------- */
+.menu{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;background:var(--bg);overflow:auto}
+.menu__top{display:flex;align-items:center;justify-content:space-between;height:var(--hh);padding-inline:var(--gut);border-bottom:1px solid var(--line);flex:none}
+.menu__info .tel{color:var(--ink)}
+.menu nav{display:flex;flex-direction:column;padding:28px var(--gut) 12px}
+.menu nav a{padding:16px 0;border-bottom:1px solid var(--line);font:400 2rem/1.1 var(--f-head);letter-spacing:0.036em;text-transform:uppercase;text-decoration:none}
+.menu__info{padding:24px var(--gut) 32px;color:var(--ink-2);font-size:var(--fs-text);display:grid;gap:8px}
+.menu .frieze{margin:auto 0 28px;flex:none}
+
+/* ---------- окна: товар, корзина, политика ---------- */
+.ovl{position:fixed;inset:0;z-index:100;overflow:auto;background:rgba(28,24,24,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:clamp(0px,3vw,40px) clamp(0px,3vw,40px);overscroll-behavior:contain}
+.dlg{position:relative;max-width:1080px;margin:0 auto;background:var(--bg);border-radius:6px}
+.dlg--sheet{max-width:920px}
+.dlg--doc{max-width:780px}
+.ovl--doc{padding-top:0}
+.ovl--doc .dlg--doc{margin-top:clamp(0px,3vw,40px)}
+.x{position:absolute;top:14px;right:14px;z-index:3;display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--line-2);border-radius:50%;background:var(--bg)}
+.x:hover{border-color:var(--ink)}
+html.lock{overflow:hidden}
+
+.pm{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}
+.pm__img{position:relative;overflow:hidden;background:#e9e5df;border-radius:6px 0 0 6px;cursor:zoom-in;align-self:start;aspect-ratio:1}
+.pm__img img{width:100%;height:100%;object-fit:cover;transition:transform .35s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.pm__img.is-zoom{cursor:zoom-out}
+.pm__img.is-zoom img{transform:scale(2)}
+.pm__hint{position:absolute;left:14px;bottom:14px;padding:8px 14px;border-radius:999px;background:rgba(251,249,245,.92);font-size:var(--fs-note);color:var(--ink-2);pointer-events:none}
+.pm__info{padding:clamp(28px,4vw,56px) clamp(24px,4vw,52px) clamp(28px,4vw,48px)}
+.pm__title{padding-right:52px;font:400 clamp(1.904rem,2.912vw,2.576rem)/1.12 var(--f-head);letter-spacing:0.009em}
+.pm__kind{margin-top:10px;font-size:var(--fs-text);color:var(--ink-2)}
+.pm__desc{margin-top:22px;font-size:var(--fs-text);line-height:var(--lh-text)}
+.spec{margin-top:24px;border-top:1px solid var(--line)}
+.spec div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:var(--fs-note)}
+.spec dt{color:var(--ink-2)}
+.spec dd{text-align:right}
+.var{margin-top:26px}
+.var h3{margin-bottom:12px;font:400 var(--fs-text)/1.2 var(--f-head);letter-spacing:0.059em;text-transform:uppercase;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:0 16px;border:1px solid var(--line-2);border-radius:999px;background:none;font-size:var(--fs-note);transition:border-color .2s,background .2s,color .2s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-checked=true]{border-color:var(--red);background:var(--red-soft);color:var(--red-deep)}
+.pm__buy{display:flex;align-items:center;flex-wrap:wrap;gap:14px 16px;margin-top:30px}
+.pm__price{margin-right:auto;font:500 1.5rem/1 var(--f-body);font-variant-numeric:tabular-nums}
+.pm__price small{font-weight:400;font-size:var(--fs-note);color:var(--ink-2);margin-left:4px}
+.pm__note{margin-top:18px;font-size:var(--fs-note);line-height:1.6;color:var(--ink-2)}
+.more{grid-column:1/-1;padding:8px clamp(24px,4vw,52px) clamp(32px,4vw,52px)}
+.more h3{padding-top:32px;margin-bottom:22px;border-top:1px solid var(--line);font:400 var(--fs-h3)/1.2 var(--f-head);letter-spacing:0.041em;text-transform:uppercase}
+.more ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.mini{display:flex;flex-direction:column;gap:10px;width:100%;padding:0;border:0;background:none;text-align:left}
+.mini img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;background:#e9e5df}
+.mini b{font:400 var(--fs-h4)/1.2 var(--f-head);letter-spacing:0.009em}
+.mini span{font-size:var(--fs-note);color:var(--ink-2)}
+.mini:hover b{color:var(--red)}
+
+.sheet{padding:clamp(56px,7vw,80px) clamp(20px,6vw,80px) clamp(40px,5vw,64px)}
+.sheet__title{text-align:center;font:400 clamp(2.24rem,4.032vw,3.136rem)/1.1 var(--f-head);letter-spacing:0.027em;text-transform:uppercase;margin-bottom:clamp(28px,4vw,44px)}
+.lines{border-top:1px solid var(--line-2)}
+.line{display:grid;grid-template-columns:76px minmax(0,1fr) auto auto auto;gap:14px 20px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line-2)}
+.line img{width:76px;height:76px;object-fit:cover;border-radius:4px;background:#e9e5df}
+.line__t b{display:block;font:400 var(--fs-h4)/1.2 var(--f-head);letter-spacing:0.013em}
+.line__t span{display:block;margin-top:3px;font-size:var(--fs-note);color:var(--ink-2)}
+.qty{display:inline-flex;align-items:center;gap:6px}
+.qty button{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line-2);border-radius:50%;background:none;transition:border-color .2s}
+.qty button:hover{border-color:var(--ink)}
+.qty button .ic{width:16px;height:16px}
+.qty output{min-width:30px;padding:5px 0;border-radius:6px;background:var(--red-soft);text-align:center;font-size:var(--fs-note);font-variant-numeric:tabular-nums}
+.line__p{min-width:96px;text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
+.line__x{display:grid;place-items:center;width:36px;height:36px;border:0;background:none;color:var(--ink-2)}
+.line__x:hover{color:var(--red)}
+.sum{margin-top:26px;display:grid;gap:10px}
+.sum div{display:flex;justify-content:space-between;gap:20px;font-size:var(--fs-text)}
+.sum dt{color:var(--ink-2)}
+.sum dd{text-align:right;font-variant-numeric:tabular-nums}
+.sum .tot{margin-top:6px;padding-top:16px;border-top:1px solid var(--line-2);font-size:var(--fs-text)}
+.sum .tot dt{color:var(--ink)}
+.sum .tot dd{font-weight:600}
+.sheet__cta{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:34px}
+.sheet__note{max-width:34em;margin:22px auto 0;text-align:center;font-size:var(--fs-note);line-height:1.6;color:var(--ink-2)}
+.cart-empty{padding:16px 0 8px;text-align:center}
+.cart-empty svg{width:64px;height:64px;margin:0 auto 18px;stroke:var(--red);stroke-width:1.2}
+.cart-empty p{margin:0 auto 26px;max-width:24em;color:var(--ink-2)}
+
+.frame{padding:clamp(24px,4vw,44px);border:1px solid var(--ink-2);border-radius:28px;display:grid;gap:12px}
+.frame h3{margin-top:14px;text-align:center;font:400 var(--fs-h4)/1.2 var(--f-head);letter-spacing:0.045em;text-transform:uppercase}
+.frame h3:first-child{margin-top:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:block}
+.field input,.field textarea{width:100%;min-height:50px;padding:0 22px;border:1px solid var(--line-2);border-radius:999px;background:var(--paper);font-size:var(--fs-text);transition:border-color .2s}
+.field textarea{min-height:110px;padding:16px 22px;border-radius:24px;resize:vertical;line-height:1.5}
+.field input::placeholder,.field textarea::placeholder{color:#8a807b}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--ink)}
+.field.is-bad input,.field.is-bad textarea{border-color:var(--red)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg label{position:relative;display:block}
+.seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.seg span{display:flex;align-items:center;justify-content:center;min-height:50px;padding:0 16px;border:1px solid var(--line-2);border-radius:999px;background:var(--paper);text-align:center;font-size:var(--fs-text);line-height:1.3;transition:border-color .2s,background .2s}
+.seg input:checked+span{border-color:var(--red);background:var(--red-soft);color:var(--red-deep)}
+.seg input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+.hint{text-align:center;font-size:var(--fs-note);line-height:1.55;color:var(--ink-2)}
+.chk{display:flex;gap:12px;align-items:flex-start;margin-top:6px;font-size:var(--fs-note);line-height:1.5;color:var(--ink-2)}
+.chk input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:var(--red)}
+.chk.is-bad{color:var(--red)}
+.chk a{text-underline-offset:.2em}
+.err{min-height:1.4em;text-align:center;font-size:var(--fs-note);color:var(--red)}
+.frame__cta{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:6px}
+.order{margin:0 0 24px;padding:22px 24px;border:1px solid var(--line-2);border-radius:20px;background:var(--paper);font:400 var(--fs-text)/var(--lh-text) var(--f-body);white-space:pre-wrap;word-break:break-word}
+.done__act{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.done p{max-width:34em;margin:0 auto 24px;text-align:center;color:var(--ink-2)}
+.done p.hint--call{margin:28px auto 6px}
+.done .tel{display:block;margin:0;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:120;display:flex;align-items:center;gap:16px;max-width:calc(100% - 32px);padding:12px 12px 12px 22px;border-radius:999px;background:var(--ink);color:#fff;font-size:var(--fs-note);line-height:1.35;box-shadow:0 12px 32px rgba(28,24,24,.3);transform:translate(-50%,24px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.toast.is-on{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.toast button{flex:none;min-height:36px;padding:0 16px;border:0;border-radius:999px;background:#fff;color:var(--ink);font:500 var(--fs-note)/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- документы: оферта, политика, согласие ---------- */
+.doc__bar{position:sticky;top:0;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px clamp(20px,5vw,56px);background:var(--bg);border-bottom:1px solid var(--line);border-radius:6px 6px 0 0}
+.doc__name{font:400 var(--fs-h4)/1.2 var(--f-head);letter-spacing:.01em;text-transform:uppercase;color:var(--ink-2)}
+.x--bar{position:static;flex:none}
+.doc{padding:clamp(28px,4vw,48px) clamp(20px,5vw,56px) clamp(36px,5vw,56px)}
+.doc__title{font:400 clamp(2.2rem,5.2vw,3.2rem)/1.05 var(--f-head);letter-spacing:.006em;text-transform:uppercase;text-wrap:balance}
+.doc__sub{margin-top:12px;max-width:34em;font-size:var(--fs-text);line-height:1.5;color:var(--ink-2);text-wrap:pretty}
+.doc__date{margin-top:8px;font-size:var(--fs-note);color:var(--ink-2)}
+.doc h3{display:grid;grid-template-columns:3.3rem minmax(0,1fr);margin-top:44px;font:400 var(--fs-h3)/1.2 var(--f-head);letter-spacing:.01em;text-transform:uppercase}
+.doc h3 .n{color:var(--red)}
+.doc .c{display:grid;grid-template-columns:3.3rem minmax(0,1fr);margin-top:12px;font-size:var(--fs-text);line-height:var(--lh-text)}
+.doc .n{font-variant-numeric:tabular-nums}
+.doc .c .n{color:var(--ink-2)}
+.doc .t{text-wrap:pretty}
+.doc .dash{margin:8px 0 0 3.3rem;font-size:var(--fs-text);line-height:var(--lh-text)}
+.doc .dash li{position:relative;padding-left:1.5em;margin-top:6px}
+.doc .dash li::before{content:"—";position:absolute;left:0;color:var(--ink-2)}
+.doc a{text-decoration-color:var(--line-2);text-underline-offset:.2em}
+.doc a:hover{text-decoration-color:var(--red)}
+.doc b{font-weight:600}
+.doc__end{display:flex;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+
+/* ---------- адаптив ---------- */
+@media (max-width:1239px){
+  .hdr__tel{display:none}
+}
+@media (max-width:1179px){
+  .hero{display:flex;flex-direction:column;min-height:0}
+  .hero__copy{order:-1}
+  .hero__copy{padding:clamp(36px,6vw,56px) var(--gut) 24px}
+  .hero__media{position:relative;top:auto;right:auto;bottom:auto;width:100%;aspect-ratio:16/9}
+  .hero__media img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 24%);mask-image:linear-gradient(180deg,transparent 0,#000 24%);object-position:center}
+  .h1{font-size:clamp(2.4rem,7.4vw,4rem)}
+}
+@media (max-width:1040px){
+  .nav,.hdr__tel{display:none}
+  .cartbtn{margin-left:auto}
+  .burger{display:inline-flex}
+  .facts ul{grid-template-columns:1fr 1fr;gap:24px 28px}
+  .about,.contacts,.rev{grid-template-columns:minmax(0,1fr)}
+  .rev__aside{position:static}
+  .photo{position:static}
+  .photo img{aspect-ratio:4/3;object-position:50% 42%}
+  .rev__list{column-count:2}
+}
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 20px}
+  .tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut)}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none}
+  .pm{grid-template-columns:1fr}
+  .pm__img{border-radius:6px 6px 0 0}
+  .ftr__in{grid-template-columns:minmax(0,1fr);justify-items:start;gap:20px}
+  .ftr__tel{white-space:normal}
+}
+@media (max-width:640px){
+  :root{--hh:64px}
+  .burger span{display:none}
+  .burger{width:46px;padding:0;justify-content:center}
+  .bar{align-items:stretch}
+  .bar__count{width:100%}
+  .bar__tools{width:100%;flex-wrap:nowrap}
+  .bar__tools .pill{flex:1;justify-content:center;padding-inline:14px}
+  .hero__media{aspect-ratio:780/941}
+  .h1{font-size:clamp(2rem,10.6vw,2.9rem)}
+  .frieze{height:42px}
+  .facts ul{grid-template-columns:1fr;gap:20px}
+  .rev__list{column-count:1}
+  .dl{grid-template-columns:1fr;gap:4px}
+  .dl dt{padding-top:14px}
+  .grid{gap:36px 14px}
+  .card__name{font-size:var(--fs-h4);min-height:2.3em}
+    .btn{padding:0 20px}
+  .lg{display:none}
+  .pm__buy .btn{flex:1}
+  .more ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .mini b{font-size:1.125rem}
+  .line{grid-template-columns:64px minmax(0,1fr) auto;gap:10px 14px}
+  .line img{width:64px;height:64px}
+  .line .qty{grid-column:2;grid-row:2}
+  .line__p{grid-column:3;grid-row:2;min-width:0}
+  .line__x{grid-column:3;grid-row:1;justify-self:end}
+  .row2,.seg{grid-template-columns:1fr}
+  .ovl{padding:0}
+  .dlg{border-radius:0;min-height:100%}
+  .doc__bar{border-radius:0}
+  .ovl--doc .dlg--doc{margin-top:0}
+  .doc h3,.doc .c{grid-template-columns:2.7rem minmax(0,1fr)}
+  .doc .dash{margin-left:2.7rem}
+  .toast{width:calc(100% - 32px);border-radius:24px}
+}
+@media (max-width:480px){
+  .btn{white-space:normal;text-align:center;line-height:1.25;padding-block:10px}
+}
+@media (max-width:380px){
+  .logo b{font-size:1.2rem}
+  .logo svg{width:30px;height:30px}
+  .card__name{font-size:1.125rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+<a class="skip" href="#catalog">К каталогу</a>
+
+<header class="hdr" id="hdr">
+  <div class="hdr__in">
+    <a class="logo" href="#top" aria-label="Босоногая Чайка, на главную">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-gull"/></svg>
+      <b>Босоногая Чайка</b>
+    </a>
+    <nav class="nav" aria-label="Разделы сайта">
+      <a href="#about">О мастерской</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="hdr__tel" href="tel:+79219828813"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>+7 (921) 982-88-13</span></a>
+    <button class="cartbtn" type="button" data-act="cart-open" aria-label="Корзина"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg><i id="cart-n" hidden>0</i></button>
+    <button class="burger" type="button" data-act="menu-open" aria-label="Открыть меню" aria-expanded="false"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg><span>Меню</span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="hero__media">
+    <picture>
+      <source media="(max-width:640px)" srcset="img/hero-m.jpg">
+      <img src="img/hero.jpg" width="1672" height="941" alt="Тарелка с мезенской росписью: красные кони по кругу. Рядом чашка и керамические магниты на сером бетоне" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="hero__copy">
+    <h1 class="h1" id="h1"><span>Сказки Севера,</span><span>застывшие в&nbsp;глине</span></h1>
+    <p class="lead">Керамика ручной работы с&nbsp;мезенской росписью: тарелки, блюда, чашки. Мастерская Лины Альтерман в&nbsp;<span class="nw">Санкт-Петербурге</span>.</p>
+    <div class="hero__cta">
+      <a class="btn btn--red" href="#catalog">Смотреть каталог</a>
+      <a class="btn btn--line" href="#about">О мастерской</a>
+    </div>
+  </div>
+</section>
+
+<section class="facts" aria-label="Коротко о мастерской">
+  <ul>
+    <li><b>Расписано вручную</b>Каждая вещь единственная: рисунок и оттенок глазури чуть отличаются от фото</li>
+    <li><b>4,9 на Яндекс Картах</b>34 оценки и 19 отзывов от покупателей и гостей мастерской</li>
+    <li><b class="nw">Санкт-Петербург</b>Проспект Елизарова, 36А. Самовывоз и отправка по России</li>
+    <li><b>Мастер-классы и обжиг</b>Занятия для новичков, обжиг ваших изделий в печах мастерской</li>
+  </ul>
+</section>
+
+<div class="frieze" aria-hidden="true"></div>
+
+<section class="sec about" id="about" aria-labelledby="about-h">
+  <div class="about__text">
+    <h2 class="h2" id="about-h">Чем мы занимаемся</h2>
+    <p class="lead">Лепим, сушим, расписываем и обжигаем: от куска глины до тарелки на вашем столе. Главная тема мастерской&nbsp;— мезенская роспись.</p>
+    <p class="about__p">Мезенская роспись пришла с&nbsp;реки Мезень, с&nbsp;Русского Севера. Промысел сложился в&nbsp;конце XIX века, а&nbsp;его знаки&nbsp;— красные тонконогие кони, ромбы, кресты&nbsp;— узнают с&nbsp;первого взгляда. Лина переносит этот язык с&nbsp;дерева на&nbsp;глину: красным и&nbsp;чёрным по&nbsp;белой глазури.</p>
+    <div class="acts">
+      <div class="act">
+        <svg class="ic" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3l11 14-11 14L6 17z"/><path d="M17 12v10M12 17h10"/></svg>
+        <h3>Мезенская роспись</h3>
+        <p>Кони, олени, ромбы и кресты Русского Севера&nbsp;— на тарелках, блюдах и чашках.</p>
+      </div>
+      <div class="act">
+        <svg class="ic" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 31V13"/><path d="M17 20c-6 0-9-3-9-9 6 0 9 3 9 9zM17 15c5 0 8-3 8-8-5 0-8 3-8 8z"/><path d="M12 31h10"/></svg>
+        <h3>Звери из бестиария</h3>
+        <p>Зайцы, совы, львы и морской козёл в&nbsp;духе средневековых рукописей, с&nbsp;подписями старинными буквами.</p>
+      </div>
+      <div class="act">
+        <svg class="ic" viewBox="0 0 34 34" aria-hidden="true"><path d="M10 6h14M12 6c-1 6-5 8-5 14 0 6 4 10 10 10s10-4 10-10c0-6-4-8-5-14"/><path d="M8 19h18"/></svg>
+        <h3>Мастер-классы</h3>
+        <p>Ручная лепка и гончарный круг, группой или один на один. Мастер научит, подскажет и&nbsp;поможет.</p>
+      </div>
+      <div class="act">
+        <svg class="ic" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3c1 6 8 9 8 17a8 8 0 0 1-16 0c0-4 2-6 4-8 0 3 1 4 3 5-1-5-1-9 1-14z"/></svg>
+        <h3>Обжиг</h3>
+        <p>Обжигаем и ваши изделия: печь на&nbsp;47&nbsp;литров&nbsp;— 2&nbsp;000&nbsp;₽ целиком или 600&nbsp;₽ за&nbsp;полку, печь на&nbsp;190&nbsp;литров&nbsp;— 4&nbsp;000&nbsp;₽ за&nbsp;полную загрузку.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <div class="photo__frame"><img src="img/lina.jpg" width="1672" height="941" loading="lazy" alt="Мастер Лина Альтерман расписывает тарелку красной краской. Вокруг кисти, баночки с краской и керамика на полках"></div>
+    <figcaption>Лина Альтерман расписывает тарелку в мастерской на проспекте Елизарова</figcaption>
+  </figure>
+</section>
+
+<div class="frieze" aria-hidden="true"></div>
+
+<section class="sec cat" id="catalog" aria-labelledby="cat-h">
+  <div class="cat__head">
+    <h2 class="h2" id="cat-h">Каталог</h2>
+    <p>Каждая вещь расписана вручную, поэтому рисунок и оттенок глазури могут слегка отличаться от фото.</p>
+  </div>
+  <div class="tabs" id="tabs" role="group" aria-label="Разделы каталога"></div>
+  <div class="bar">
+    <span class="bar__count" id="count" aria-live="polite"></span>
+    <div class="bar__tools">
+      <button class="pill" type="button" id="fav-only" data-act="fav-filter" aria-pressed="false"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-heart"/></svg><span>Избранное</span><span id="fav-n"></span></button>
+      <select class="pill" id="sort" aria-label="Порядок показа">
+        <option value="def">По умолчанию</option>
+        <option value="asc">Сначала дешёвые</option>
+        <option value="desc">Сначала дорогие</option>
+      </select>
+    </div>
+  </div>
+  <ul class="grid" id="grid"></ul>
+  <noscript><p class="muted">Для каталога нужен JavaScript. Позвоните мастеру: +7 (921) 982-88-13.</p></noscript>
+</section>
+
+<div class="frieze" aria-hidden="true"></div>
+
+<section class="sec rev" id="reviews" aria-labelledby="rev-h">
+  <div class="rev__aside">
+    <h2 class="h2" id="rev-h">Отзывы</h2>
+    <div class="score"><b class="num">4,9</b><span>на Яндекс Картах<br>34 оценки, 19 отзывов</span></div>
+    <div class="stars" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+    </div>
+    <a class="btn btn--line" href="https://yandex.ru/maps/org/bosonogaya_chayka/185847892998/reviews/" target="_blank" rel="noopener">Все отзывы на Яндекс Картах</a>
+  </div>
+  <div>
+    <div class="rev__list" id="rev-list"></div>
+    <p class="src">Отзывы с Яндекс Карт. Длинные сокращены до целых предложений, опечатки исправлены.</p>
+  </div>
+</section>
+
+<div class="frieze" aria-hidden="true"></div>
+
+<section class="sec contacts" id="contacts" aria-labelledby="con-h">
+  <div>
+    <h2 class="h2" id="con-h">Контакты</h2>
+    <dl class="dl">
+      <dt>Адрес</dt>
+      <dd><span class="nw">Санкт-Петербург</span>, проспект Елизарова, 36А<small>Мастерская и витрина. Вход доступен для колясок</small></dd>
+      <dt>Часы работы</dt>
+      <dd>Пн—сб 10:00—18:00<br>Вс 12:00—18:00</dd>
+      <dt>Телефон</dt>
+      <dd>
+        <a class="tel" href="tel:+79219828813">+7 (921) 982-88-13</a>
+        <div class="msgs">
+          <a class="pill" href="https://wa.me/79219828813" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="pill" href="https://viber.click/+79219828813" target="_blank" rel="noopener">Viber</a>
+        </div>
+      </dd>
+      <dt>Почта</dt>
+      <dd><a href="mailto:chaykabn@mail.ru">chaykabn@mail.ru</a></dd>
+      <dt>В сети</dt>
+      <dd>
+        <a href="https://vk.ru/4aika_pottery" target="_blank" rel="noopener">ВКонтакте</a>,
+        <a href="https://www.livemaster.ru/linaceramica" target="_blank" rel="noopener">Ярмарка Мастеров</a>,
+        <a href="https://yandex.ru/maps/org/bosonogaya_chayka/185847892998/" target="_blank" rel="noopener">Яндекс Карты</a>
+      </dd>
+    </dl>
+  </div>
+  <figure class="map">
+    <div class="map__frame"><div class="map__box">
+      <img src="img/map.jpg" width="1280" height="768" loading="lazy" alt="Карта района: мастерская «Босоногая Чайка» на проспекте Елизарова, 36А">
+      <svg class="map__pin" viewBox="0 0 48 60" aria-hidden="true"><path d="M24 58C24 58 4 36 4 22a20 20 0 0 1 40 0c0 14-20 36-20 36z" fill="#c4271d"/><circle cx="24" cy="22" r="11.5" fill="#fbf9f5"/><circle cx="24" cy="22" r="5" fill="#c4271d"/></svg>
+      <a class="btn btn--red btn--sm map__act" href="https://yandex.ru/maps/org/bosonogaya_chayka/185847892998/" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+    </div></div>
+    <figcaption>Карта: © участники <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Метка приблизительная, точное место&nbsp;— на Яндекс Картах</figcaption>
+  </figure>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="frieze frieze--light" aria-hidden="true"></div>
+  <div class="ftr__in">
+    <a class="logo" href="#top" aria-label="Босоногая Чайка, наверх">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-gull"/></svg>
+      <b>Босоногая Чайка</b>
+    </a>
+    <a class="ftr__tel" href="tel:+79219828813">Связаться с нами +7 (921) 982-88-13</a>
+    <div class="ftr__c">
+      <span>© 2026 Босоногая Чайка</span>
+      <a href="#offer" data-act="doc-open" data-doc="offer">Публичная оферта</a>
+      <a href="#policy" data-act="doc-open" data-doc="policy">Политика конфиденциальности</a>
+      <a href="#consent" data-act="doc-open" data-doc="consent">Согласие на обработку данных</a>
+      <a href="https://vk.ru/4aika_pottery" target="_blank" rel="noopener">ВКонтакте</a>
+      <a href="https://www.livemaster.ru/linaceramica" target="_blank" rel="noopener">Ярмарка Мастеров</a>
+    </div>
+  </div>
+  <p class="ftr__req">Индивидуальный предприниматель Альтман Эвелина Давидовна. ИНН 745312232794, ОГРНИП 320745600096958</p>
+</footer>
+
+<!-- мобильное меню -->
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню" hidden>
+  <div class="menu__top">
+    <a class="logo" href="#top" data-act="menu-close" aria-label="Босоногая Чайка, на главную">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-gull"/></svg>
+      <b>Босоногая Чайка</b>
+    </a>
+    <button class="burger" type="button" data-act="menu-close" aria-label="Закрыть меню"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg><span>Закрыть</span></button>
+  </div>
+  <nav aria-label="Разделы сайта">
+    <a href="#about" data-act="menu-close">О мастерской</a>
+    <a href="#catalog" data-act="menu-close">Каталог</a>
+    <a href="#reviews" data-act="menu-close">Отзывы</a>
+    <a href="#contacts" data-act="menu-close">Контакты</a>
+  </nav>
+  <div class="menu__info">
+    <a class="tel" href="tel:+79219828813">+7 (921) 982-88-13</a>
+    <span>Проспект Елизарова, 36А, Санкт-Петербург</span>
+    <span>Пн—сб 10:00—18:00, вс 12:00—18:00</span>
+  </div>
+  <div class="frieze" aria-hidden="true"></div>
+</div>
+
+<!-- окно товара -->
+<div class="ovl" id="ovl-product" role="dialog" aria-modal="true" aria-label="Карточка товара" hidden>
+  <div class="dlg">
+    <button class="x" type="button" data-act="close" aria-label="Закрыть"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div id="pm-view"></div>
+  </div>
+</div>
+
+<!-- корзина и оформление -->
+<div class="ovl" id="ovl-cart" role="dialog" aria-modal="true" aria-label="Корзина" hidden>
+  <div class="dlg dlg--sheet">
+    <button class="x" type="button" data-act="close" aria-label="Закрыть"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div class="sheet" id="cart-view"></div>
+  </div>
+</div>
+
+<!-- оферта, политика конфиденциальности и согласие: собираются из legal.txt -->
+<div class="ovl ovl--doc" id="ovl-offer" role="dialog" aria-modal="true" aria-label="Публичная оферта" hidden>
+<div class="dlg dlg--doc">
+<div class="doc__bar"><span class="doc__name">Публичная оферта</span><button class="x x--bar" type="button" data-act="close" aria-label="Закрыть"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<article class="doc">
+<h2 class="doc__title">Публичная оферта</h2>
+<p class="doc__sub">о заключении договора розничной купли-продажи товаров дистанционным способом</p>
+<p class="doc__date">Редакция от 26 сентября 2026 г.</p>
+<section><h3><span class="n">1.</span><span>Общие положения</span></h3>
+<p class="c"><span class="n">1.1.</span><span class="t">Это публичная оферта в соответствии со статьёй 437 Гражданского кодекса РФ. Индивидуальный предприниматель Альтман Эвелина Давидовна, ИНН 745312232794, ОГРНИП 320745600096958 (далее — <b>Продавец</b>), предлагает любому, кто примет её условия (далее — <b>Покупатель</b>), заключить договор розничной купли-продажи авторской керамики ручной работы, представленной на сайте «Босоногая Чайка» (далее — <b>Сайт</b>).</span></p>
+<p class="c"><span class="n">1.2.</span><span class="t">Оферта адресована потребителям: гражданам, которые заказывают Товары для личных, семейных, домашних и иных нужд, не связанных с предпринимательской деятельностью. Организации и предприниматели (в том числе для корпоративных подарков и оптовых закупок) оформляют заказы по отдельному соглашению; для этого нужно связаться с Продавцом по контактам из раздела 12.</span></p>
+<p class="c"><span class="n">1.3.</span><span class="t">Оферта составлена в соответствии с Гражданским кодексом РФ, Законом РФ от 7 февраля 1992 г. № 2300-1 «О защите прав потребителей» (далее — Закон о защите прав потребителей) и Правилами продажи товаров по договорам розничной купли-продажи, утверждёнными постановлением Правительства РФ от 31 декабря 2020 г. № 2463.</span></p>
+<p class="c"><span class="n">1.4.</span><span class="t">В Оферте используются такие понятия:</span></p>
+<ul class="dash">
+<li><b>Товар</b> — изделие из каталога Сайта: посуда, плитки, магниты и другая керамика ручной работы;</li>
+<li><b>Заказ</b> — список Товаров, который Покупатель собрал на Сайте и передал Продавцу;</li>
+<li><b>Подтверждение</b> — сообщение Продавца, в котором он сообщает, что Товар есть в наличии, и называет итоговую сумму, стоимость и срок доставки, способ и срок оплаты;</li>
+<li><b>Мастерская</b> — место, где Продавец передаёт Товары при самовывозе: Санкт-Петербург, проспект Елизарова, 36А.</li>
+</ul>
+<p class="c"><span class="n">1.5.</span><span class="t">Оферта действует со дня публикации на Сайте, пока её не отзовёт или не заменит Продавец. Продавец вправе изменять Оферту; новая редакция действует с момента публикации на Сайте и не меняет условий договоров, которые уже заключены.</span></p>
+<p class="c"><span class="n">1.6.</span><span class="t">Оформляя Заказ, Покупатель подтверждает, что прочитал Оферту и принимает её условия.</span></p>
+</section>
+<section><h3><span class="n">2.</span><span>Предмет договора и информация о Товаре</span></h3>
+<p class="c"><span class="n">2.1.</span><span class="t">По договору Продавец передаёт Покупателю выбранный Товар, а Покупатель принимает Товар и оплачивает его цену.</span></p>
+<p class="c"><span class="n">2.2.</span><span class="t">Каждое изделие расписано и обожжено вручную. Рисунок, оттенок глазури, форма и размер могут немного отличаться от фотографий на Сайте и от других изделий той же серии. Это свойство ручной работы, а не недостаток. Цвета на экране зависят от настройки устройства.</span></p>
+<p class="c"><span class="n">2.3.</span><span class="t">Описание Товара, его основные свойства и цена размещены на Сайте. Место изготовления Товаров — мастерская Продавца в Санкт-Петербурге, если в описании не сказано иное.</span></p>
+<p class="c"><span class="n">2.4.</span><span class="t">Если Покупателю нужны дополнительные сведения (размеры, вес, правила ухода, можно ли греть изделие в микроволновой печи и мыть в посудомоечной машине), он вправе запросить их у Продавца до оформления Заказа. Продавец сообщает такие сведения при Подтверждении или по запросу.</span></p>
+<p class="c"><span class="n">2.5.</span><span class="t">Срок службы и гарантийный срок на Товары не устанавливаются, срок годности не применяется, если иное не указано в описании Товара. Права Покупателя при обнаружении недостатков описаны в разделе 6.</span></p>
+</section>
+<section><h3><span class="n">3.</span><span>Как оформить и подтвердить Заказ</span></h3>
+<p class="c"><span class="n">3.1.</span><span class="t">Покупатель выбирает Товары в каталоге, кладёт их в корзину и на странице «Оформление заказа» указывает имя, телефон и способ получения (самовывоз или отправка по России), а при отправке — город и адрес. По желанию он добавляет комментарий. Чтобы оформить Заказ, нужно принять условия Оферты и дать согласие на обработку персональных данных.</span></p>
+<p class="c"><span class="n">3.2.</span><span class="t">Сайт не принимает оплату и не отправляет Заказ автоматически. После кнопки «Подтвердить заказ» Сайт готовит текст Заказа. Покупатель передаёт его Продавцу сам: кнопкой «Отправить в WhatsApp» или иным способом (например, скопировав текст в другой мессенджер) либо сообщает Заказ по телефону <span class="nw">+7 (921) 982-88-13</span>. Заказ считается полученным, когда сообщение с его составом дошло до Продавца.</span></p>
+<p class="c"><span class="n">3.3.</span><span class="t">Изделия ручной работы часто существуют в одном экземпляре, поэтому наличие Товара подтверждает Продавец. В течение двух рабочих дней после получения Заказа он связывается с Покупателем по указанному телефону или в мессенджере и отправляет Подтверждение либо сообщает, что Товара нет, и предлагает похожий.</span></p>
+<p class="c"><span class="n">3.4.</span><span class="t">Если условия из Подтверждения Покупателя не устраивают, он вправе отказаться от Заказа, ничего не платя.</span></p>
+<p class="c"><span class="n">3.5.</span><span class="t">После Подтверждения Продавец придерживает Товар для Покупателя три календарных дня, если в Подтверждении не указан другой срок. Если за это время оплата не поступила, Заказ отменяется, и Товар можно предложить другим покупателям.</span></p>
+<p class="c"><span class="n">3.6.</span><span class="t">Оплата Товара на условиях Подтверждения — акцепт Оферты. Договор купли-продажи считается заключённым с момента, когда оплата поступила Продавцу, а при оплате в Мастерской при самовывозе — с момента оплаты и передачи Товара.</span></p>
+<p class="c"><span class="n">3.7.</span><span class="t">Продавец вправе отказаться от исполнения Заказа, если Товара нет в наличии, если с Покупателем не удаётся связаться по указанным им контактам либо если Покупатель указал заведомо неверные данные. Если Покупатель уже оплатил Товар, Продавец вернёт деньги не позднее десяти дней со дня отказа.</span></p>
+</section>
+<section><h3><span class="n">4.</span><span>Цена и оплата</span></h3>
+<p class="c"><span class="n">4.1.</span><span class="t">Цена Товара указана на Сайте в российских рублях за штуку или за комплект. Стоимость доставки в цену Товара не входит.</span></p>
+<p class="c"><span class="n">4.2.</span><span class="t">Цены на Сайте могут меняться. Для Покупателя действует цена из Подтверждения, и она не меняется до конца срока, отведённого на оплату (п. 3.5). Если цена на Сайте указана с очевидной ошибкой, Продавец сообщает об этом в Подтверждении, и Покупатель вправе отказаться от Заказа.</span></p>
+<p class="c"><span class="n">4.3.</span><span class="t">Оплата на Сайте не принимается. Способ оплаты и реквизиты Продавец называет в Подтверждении, например: перевод на банковскую карту или по номеру телефона через Систему быстрых платежей либо оплата в Мастерской при самовывозе.</span></p>
+<p class="c"><span class="n">4.4.</span><span class="t">Продавец выдаёт Покупателю чек в порядке, установленном законодательством: вместе с Товаром или в электронном виде.</span></p>
+<p class="c"><span class="n">4.5.</span><span class="t">Обязанность оплатить Товар считается исполненной с момента, когда деньги зачислены Продавцу или переданы ему наличными.</span></p>
+</section>
+<section><h3><span class="n">5.</span><span>Доставка и получение Товара</span></h3>
+<p class="c"><span class="n">5.1.</span><span class="t">Товар можно получить двумя способами: забрать в Мастерской (режим работы: пн—сб 10:00—18:00, вс 12:00—18:00; время визита лучше согласовать заранее) или получить отправлением по России транспортной компанией либо Почтой России.</span></p>
+<p class="c"><span class="n">5.2.</span><span class="t">Стоимость и срок доставки зависят от тарифов перевозчика и адреса. Продавец рассчитывает их и сообщает в Подтверждении. Доставку оплачивает Покупатель, если стороны не договорились иначе.</span></p>
+<p class="c"><span class="n">5.3.</span><span class="t">Продавец передаёт Товар перевозчику в срок, названный в Подтверждении, и сообщает Покупателю номер отправления.</span></p>
+<p class="c"><span class="n">5.4.</span><span class="t">Продавец упаковывает Товар так, чтобы он не пострадал при обычной перевозке.</span></p>
+<p class="c"><span class="n">5.5.</span><span class="t">Покупатель обязан принять Товар. Перед получением посылки просим проверить целость упаковки. Если она повреждена, лучше вскрыть посылку при сотруднике перевозчика или почты и составить акт о повреждении.</span></p>
+<p class="c"><span class="n">5.6.</span><span class="t">Продавец считается исполнившим обязанность передать Товар, когда Товар вручён Покупателю или его представителю: при самовывозе — в Мастерской, при отправке — по адресу доставки или в пункте выдачи. С этого момента к Покупателю переходит риск случайной гибели или повреждения Товара.</span></p>
+<p class="c"><span class="n">5.7.</span><span class="t">Если Покупатель не забрал отправление и оно вернулось Продавцу, Продавец возвращает оплаченную сумму за вычетом расходов на обратную доставку (п. 6.4).</span></p>
+</section>
+<section><h3><span class="n">6.</span><span>Возврат Товара и претензии</span></h3>
+<p class="c"><span class="n">6.1.</span><span class="t">Покупатель вправе отказаться от Товара надлежащего качества до его передачи в любое время, а после передачи — в течение семи дней (статья 26.1 Закона о защите прав потребителей). Возврат возможен, если сохранены товарный вид и потребительские свойства Товара, а также подтверждение покупки: чек, переписка по Заказу или история платежа.</span></p>
+<p class="c"><span class="n">6.2.</span><span class="t">Информацию о порядке и сроках возврата Продавец предоставляет Покупателю в письменной форме при доставке Товара: вкладывает её в посылку или передаёт при самовывозе.</span></p>
+<p class="c"><span class="n">6.3.</span><span class="t">Чтобы вернуть Товар, Покупатель сообщает об этом Продавцу по телефону, e-mail или в мессенджере, а затем отправляет Товар обратно в надёжной упаковке. Адрес для возврата Продавец называет в ответ. За сохранность Товара при обратной пересылке отвечает Покупатель, поэтому просим застраховать отправление.</span></p>
+<p class="c"><span class="n">6.4.</span><span class="t">Продавец возвращает уплаченную сумму не позднее десяти дней со дня, когда Покупатель предъявил требование о возврате, за вычетом расходов Продавца на доставку возвращённого Товара от Покупателя. Деньги возвращаются тем способом, которым платил Покупатель, если он не попросил иначе.</span></p>
+<p class="c"><span class="n">6.5.</span><span class="t">Если Товар изготовлен по заказу Покупателя (с его надписью, именем, рисунком или размерами) и подходит только ему, отказаться от такого Товара надлежащего качества после изготовления нельзя (пункт 4 статьи 26.1 Закона о защите прав потребителей). Продавец согласует такие условия с Покупателем заранее.</span></p>
+<p class="c"><span class="n">6.6.</span><span class="t">Если у Товара есть недостаток, Покупатель вправе воспользоваться правами по статье 18 Закона о защите прав потребителей: потребовать замены на такой же Товар, соразмерного уменьшения цены или безвозмездного устранения недостатка (если он устраним) либо отказаться от договора и потребовать возврата денег. Для этого нужно описать недостаток и приложить фотографии. Продавец рассмотрит требование и ответит в сроки, установленные законом (статьи 20—22 Закона о защите прав потребителей). Если гарантийный срок не установлен, требования, связанные с недостатками, можно предъявить в разумный срок, но не позднее двух лет со дня передачи Товара (статья 19 Закона о защите прав потребителей).</span></p>
+<p class="c"><span class="n">6.7.</span><span class="t">Не являются недостатками небольшие различия в рисунке, оттенке глазури, размере и форме, точки и «мушки» на глазури, следы мастера и лёгкая неровность, если они не мешают использовать Товар по назначению (п. 2.2).</span></p>
+<p class="c"><span class="n">6.8.</span><span class="t">Если Товар получен повреждённым, просим сообщить Продавцу в течение трёх дней после получения и прислать фотографии упаковки и Товара. Продавец по выбору Покупателя заменит Товар на такой же (если он есть) или вернёт деньги, а претензию перевозчику решит сам. Этот срок — просьба, а не ограничение прав Покупателя.</span></p>
+<p class="c"><span class="n">6.9.</span><span class="t">Продавец не отвечает за недостатки, которые возникли после передачи Товара из-за нарушения Покупателем правил использования, хранения или перевозки, действий третьих лиц или непреодолимой силы (пункт 6 статьи 18 Закона о защите прав потребителей). Например, за скол от удара или трещину от резкого перепада температуры.</span></p>
+<p class="c"><span class="n">6.10.</span><span class="t">Претензии Покупатель направляет на <span class="nw">chaykabn@mail.ru</span>, письменные претензии — по адресу Мастерской. Продавец отвечает на претензию в срок, установленный законом, как правило, в течение десяти дней.</span></p>
+</section>
+<section><h3><span class="n">7.</span><span>Права и обязанности сторон</span></h3>
+<p class="c"><span class="n">7.1.</span><span class="t">Продавец обязан:</span></p>
+<ul class="dash">
+<li>передать Покупателю Товар, соответствующий описанию с учётом особенностей ручной работы;</li>
+<li>дать достоверную информацию о Товаре и условиях продажи;</li>
+<li>вернуть деньги в случаях и в сроки, которые указаны в Оферте и в законе.</li>
+</ul>
+<p class="c"><span class="n">7.2.</span><span class="t">Продавец вправе:</span></p>
+<ul class="dash">
+<li>не приступать к исполнению Заказа, пока Покупатель не согласился с условиями Подтверждения;</li>
+<li>отказаться от исполнения Заказа по причинам, указанным в п. 3.7;</li>
+<li>менять цены, ассортимент и условия Оферты для новых заказов.</li>
+</ul>
+<p class="c"><span class="n">7.3.</span><span class="t">Покупатель обязан:</span></p>
+<ul class="dash">
+<li>указать достоверные контактные данные и адрес;</li>
+<li>оплатить и принять Товар;</li>
+<li>соблюдать правила использования и ухода за Товаром.</li>
+</ul>
+<p class="c"><span class="n">7.4.</span><span class="t">Покупатель вправе:</span></p>
+<ul class="dash">
+<li>получить полную информацию о Товаре;</li>
+<li>отказаться от Товара на условиях раздела 6;</li>
+<li>предъявлять претензии.</li>
+</ul>
+</section>
+<section><h3><span class="n">8.</span><span>Ответственность сторон</span></h3>
+<p class="c"><span class="n">8.1.</span><span class="t">За нарушение обязательств стороны отвечают в соответствии с законодательством РФ.</span></p>
+<p class="c"><span class="n">8.2.</span><span class="t">Продавец не отвечает за то, что Покупатель не получил его сообщение, если Продавец отправил его по контактам, которые указал Покупатель, а сбой произошёл из-за связи, мессенджера, почты или неверно указанных данных.</span></p>
+<p class="c"><span class="n">8.3.</span><span class="t">Стороны не отвечают за неисполнение обязательств, вызванное обстоятельствами непреодолимой силы: стихийными бедствиями, решениями органов власти, перебоями в перевозках и другими событиями, которые стороны не могли предвидеть и предотвратить. Сторона, для которой возникли такие обстоятельства, сообщает об этом другой стороне в разумный срок.</span></p>
+</section>
+<section><h3><span class="n">9.</span><span>Персональные данные</span></h3>
+<p class="c"><span class="n">9.1.</span><span class="t">Продавец обрабатывает персональные данные Покупателя, чтобы исполнить договор: принять и подтвердить Заказ, связаться с Покупателем, организовать доставку и рассмотреть претензии. Порядок обработки описан в <a href="#policy" data-act="doc-open" data-doc="policy">политике конфиденциальности</a>. Согласие на обработку Покупатель даёт отдельно при оформлении Заказа: <a href="#consent" data-act="doc-open" data-doc="consent">текст согласия</a>.</span></p>
+</section>
+<section><h3><span class="n">10.</span><span>Авторские права</span></h3>
+<p class="c"><span class="n">10.1.</span><span class="t">Тексты, фотографии, рисунки и оформление Сайта, а также авторские росписи на изделиях принадлежат Продавцу или используются им на законных основаниях. Копировать и использовать их в коммерческих целях без письменного согласия Продавца нельзя.</span></p>
+</section>
+<section><h3><span class="n">11.</span><span>Заключительные положения</span></h3>
+<p class="c"><span class="n">11.1.</span><span class="t">Оферта и договор регулируются законодательством РФ.</span></p>
+<p class="c"><span class="n">11.2.</span><span class="t">Споры стороны стараются решить переговорами. Если договориться не удалось, спор рассматривает суд. Покупатель вправе обратиться в суд по месту своего жительства или пребывания, по месту заключения или исполнения договора (статья 17 Закона о защите прав потребителей).</span></p>
+<p class="c"><span class="n">11.3.</span><span class="t">Если одно из положений Оферты окажется недействительным, остальные продолжают действовать.</span></p>
+</section>
+<section><h3><span class="n">12.</span><span>Реквизиты Продавца</span></h3>
+<p class="c"><span class="n">12.1.</span><span class="t">Данные Продавца:</span></p>
+<ul class="dash">
+<li><b>Продавец:</b> индивидуальный предприниматель Альтман Эвелина Давидовна;</li>
+<li><b>ИНН:</b> 745312232794;</li>
+<li><b>ОГРНИП:</b> 320745600096958;</li>
+<li><b>Мастерская и адрес самовывоза:</b> Санкт-Петербург, проспект Елизарова, 36А;</li>
+<li><b>Режим работы:</b> пн—сб 10:00—18:00, вс 12:00—18:00;</li>
+<li><b>Телефон:</b> <span class="nw">+7 (921) 982-88-13</span> (звонки, WhatsApp, Viber);</li>
+<li><b>E-mail:</b> <span class="nw">chaykabn@mail.ru</span>.</li>
+</ul>
+</section>
+<div class="doc__end"><button class="btn btn--line btn--sm" type="button" data-act="close">Закрыть</button></div>
+</article></div></div>
+<div class="ovl ovl--doc" id="ovl-policy" role="dialog" aria-modal="true" aria-label="Политика конфиденциальности" hidden>
+<div class="dlg dlg--doc">
+<div class="doc__bar"><span class="doc__name">Политика конфиденциальности</span><button class="x x--bar" type="button" data-act="close" aria-label="Закрыть"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<article class="doc">
+<h2 class="doc__title">Политика конфиденциальности</h2>
+<p class="doc__sub">в отношении обработки персональных данных на сайте «Босоногая Чайка»</p>
+<p class="doc__date">Редакция от 26 сентября 2026 г.</p>
+<section><h3><span class="n">1.</span><span>Общие положения</span></h3>
+<p class="c"><span class="n">1.1.</span><span class="t">Эта политика объясняет, какие персональные данные получает Оператор через сайт «Босоногая Чайка» (далее — <b>Сайт</b>), зачем, как хранит и защищает их и как посетитель может ими управлять. Политика составлена в соответствии с Федеральным законом от 27 июля 2006 г. № 152-ФЗ «О персональных данных» (далее — Закон о персональных данных).</span></p>
+<p class="c"><span class="n">1.2.</span><span class="t">Оператор персональных данных — индивидуальный предприниматель Альтман Эвелина Давидовна, ИНН 745312232794, ОГРНИП 320745600096958 (далее — <b>Оператор</b>). Контакты для обращений: e-mail <span class="nw">chaykabn@mail.ru</span>, телефон <span class="nw">+7 (921) 982-88-13</span>.</span></p>
+<p class="c"><span class="n">1.3.</span><span class="t">Политика касается данных посетителей и покупателей Сайта (далее — <b>Пользователь</b>), которые они сообщают Оператору при оформлении заказа, в переписке и по телефону.</span></p>
+<p class="c"><span class="n">1.4.</span><span class="t">Согласие на обработку персональных данных Пользователь даёт отдельно, отметкой в форме заказа: <a href="#consent" data-act="doc-open" data-doc="consent">текст согласия</a>. Политика не заменяет согласие, а объясняет порядок обработки.</span></p>
+<p class="c"><span class="n">1.5.</span><span class="t">Политика опубликована на Сайте и доступна по ссылке внизу страницы.</span></p>
+</section>
+<section><h3><span class="n">2.</span><span>Какие данные и для чего</span></h3>
+<p class="c"><span class="n">2.1.</span><span class="t">Оператор обрабатывает данные для таких целей:</span></p>
+<ul class="dash">
+<li>принять, подтвердить и выполнить заказ;</li>
+<li>связаться с Пользователем по заказу по телефону, в мессенджере или по e-mail;</li>
+<li>организовать доставку заказа;</li>
+<li>рассмотреть обращения и претензии;</li>
+<li>выполнить требования законодательства, в том числе по бухгалтерскому и налоговому учёту.</li>
+</ul>
+<p class="c"><span class="n">2.2.</span><span class="t">Для этих целей Оператор обрабатывает: имя; номер телефона; город и адрес доставки (только при отправке); фамилию и отчество получателя, если их требует служба доставки; комментарий к заказу и другие сведения, которые Пользователь сообщил сам; состав и сумму заказа; переписку по заказу.</span></p>
+<p class="c"><span class="n">2.3.</span><span class="t">Оператор не запрашивает паспортные данные, сведения о здоровье, убеждениях и другие специальные категории персональных данных, а также биометрические данные.</span></p>
+<p class="c"><span class="n">2.4.</span><span class="t">Пользователь вводит данные в форму заказа на Сайте, Сайт готовит текст заказа, а Пользователь сам передаёт его Оператору: в мессенджере, иным способом или по телефону. Сайт не отправляет введённые данные на свой сервер и не сохраняет их у Оператора автоматически.</span></p>
+</section>
+<section><h3><span class="n">3.</span><span>На каком основании обрабатываются данные</span></h3>
+<p class="c"><span class="n">3.1.</span><span class="t">Оператор обрабатывает данные на основании:</span></p>
+<ul class="dash">
+<li>согласия Пользователя (пункт 1 части 1 статьи 6 Закона о персональных данных);</li>
+<li>необходимости заключить и исполнить договор, стороной которого является Пользователь (пункт 5 части 1 статьи 6);</li>
+<li>необходимости выполнить обязанности, возложенные на Оператора законом, в том числе по учёту и отчётности (пункт 2 части 1 статьи 6).</li>
+</ul>
+</section>
+<section><h3><span class="n">4.</span><span>Как обрабатываются данные</span></h3>
+<p class="c"><span class="n">4.1.</span><span class="t">Оператор выполняет с данными такие действия: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передача (предоставление, доступ) в случаях из раздела 5, блокирование, удаление и уничтожение.</span></p>
+<p class="c"><span class="n">4.2.</span><span class="t">Обработка смешанная: с использованием средств автоматизации (телефон, компьютер, мессенджеры) и без них (бумажные записи о заказах).</span></p>
+<p class="c"><span class="n">4.3.</span><span class="t">Оператор не принимает решений, которые порождают юридические последствия для Пользователя, только на основании автоматизированной обработки и не составляет профили Пользователей.</span></p>
+<p class="c"><span class="n">4.4.</span><span class="t">Оператор обеспечивает запись, систематизацию, накопление, хранение, уточнение (обновление, изменение) и извлечение персональных данных граждан Российской Федерации с использованием баз данных, находящихся на территории Российской Федерации.</span></p>
+<p class="c"><span class="n">4.5.</span><span class="t">Если Пользователь отправляет заказ через мессенджер, сообщение обрабатывает и владелец мессенджера по своим правилам. Оператор на это не влияет. Пользователь может вместо этого сообщить заказ по телефону.</span></p>
+</section>
+<section><h3><span class="n">5.</span><span>Кому передаются данные</span></h3>
+<p class="c"><span class="n">5.1.</span><span class="t">Оператор не продаёт данные и не передаёт их третьим лицам, кроме двух случаев:</span></p>
+<ul class="dash">
+<li>службе доставки или почтовому оператору, которые доставляют заказ, — в объёме, нужном для доставки (имя получателя, телефон, адрес);</li>
+<li>государственным органам — по их требованиям в случаях, предусмотренных законом.</li>
+</ul>
+<p class="c"><span class="n">5.2.</span><span class="t">Любые другие передачи возможны только с отдельного согласия Пользователя.</span></p>
+</section>
+<section><h3><span class="n">6.</span><span>Сколько хранятся данные</span></h3>
+<p class="c"><span class="n">6.1.</span><span class="t">Оператор хранит данные не дольше, чем нужно для целей обработки:</span></p>
+<ul class="dash">
+<li>данные по заказам — три года со дня исполнения заказа (общий срок исковой давности), если закон не требует хранить их дольше;</li>
+<li>документы, подтверждающие продажу, — в сроки, установленные законодательством о бухгалтерском и налоговом учёте;</li>
+<li>данные из обращений, которые не привели к заказу, — до ответа на обращение и завершения связанных с ним действий.</li>
+</ul>
+<p class="c"><span class="n">6.2.</span><span class="t">Когда цель обработки достигнута, срок хранения истёк или Пользователь отозвал согласие, Оператор удаляет или уничтожает данные (стирает записи на устройствах, удаляет переписку, уничтожает бумажные носители) не позднее чем через 30 дней, если закон не требует иного.</span></p>
+</section>
+<section><h3><span class="n">7.</span><span>Права Пользователя</span></h3>
+<p class="c"><span class="n">7.1.</span><span class="t">Пользователь вправе (статья 14 Закона о персональных данных):</span></p>
+<ul class="dash">
+<li>узнать, обрабатывает ли Оператор его данные, и получить сведения об обработке;</li>
+<li>потребовать уточнить данные, заблокировать или уничтожить их, если они неполные, устаревшие, неточные или не нужны для заявленной цели;</li>
+<li>отозвать согласие на обработку;</li>
+<li>обжаловать действия Оператора в Роскомнадзор (уполномоченный орган по защите прав субъектов персональных данных) или в суд;</li>
+<li>требовать возмещения убытков и компенсации морального вреда в судебном порядке.</li>
+</ul>
+<p class="c"><span class="n">7.2.</span><span class="t">Чтобы воспользоваться правами, нужно написать на <span class="nw">chaykabn@mail.ru</span> или позвонить по <span class="nw">+7 (921) 982-88-13</span>: указать имя и телефон из заказа, номер или состав заказа и суть требования. Чтобы защитить данные, Оператор может попросить подтвердить личность.</span></p>
+<p class="c"><span class="n">7.3.</span><span class="t">Оператор отвечает на запрос о данных в течение десяти рабочих дней. Этот срок может быть продлён не более чем на пять рабочих дней, если Оператор направит Пользователю уведомление с причинами продления.</span></p>
+<p class="c"><span class="n">7.4.</span><span class="t">Если Пользователь отзывает согласие, Оператор прекращает обработку и уничтожает данные не позднее чем через 30 дней со дня получения отзыва. Если закон обязывает хранить часть данных (например, документы о продаже), Оператор сообщит об этом и оставит на хранении только их. Отзыв не влияет на законность обработки до отзыва.</span></p>
+</section>
+<section><h3><span class="n">8.</span><span>Как защищены данные</span></h3>
+<p class="c"><span class="n">8.1.</span><span class="t">Оператор принимает организационные и технические меры, чтобы защитить данные от неправомерного доступа, изменения, распространения и уничтожения (статья 19 Закона о персональных данных):</span></p>
+<ul class="dash">
+<li>доступ к данным есть только у Оператора;</li>
+<li>устройства, на которых хранятся заказы, защищены паролем и получают обновления безопасности;</li>
+<li>бумажные записи хранятся там, где к ним нет доступа посторонних;</li>
+<li>данные заказов не публикуются и не используются в рекламе.</li>
+</ul>
+</section>
+<section><h3><span class="n">9.</span><span>Что хранит и загружает Сайт</span></h3>
+<p class="c"><span class="n">9.1.</span><span class="t">Корзина и избранное хранятся в браузере Пользователя (локальное хранилище). Эти сведения не отправляются Оператору. Их можно стереть в настройках браузера. Сайт не использует cookies для отслеживания и не подключает системы веб-аналитики и рекламы.</span></p>
+<p class="c"><span class="n">9.2.</span><span class="t">Чтобы показать шрифты, страница загружает их с серверов Google Fonts. При этом браузер Пользователя передаёт Google технические сведения (IP-адрес, тип браузера). Оператор эти сведения не получает.</span></p>
+<p class="c"><span class="n">9.3.</span><span class="t">Технические журналы посещений (IP-адрес, время, адрес страницы) может вести хостинг-провайдер Сайта. Оператор их не использует для идентификации Пользователей.</span></p>
+<p class="c"><span class="n">9.4.</span><span class="t">Ссылки на «ВКонтакте», Ярмарку Мастеров, Яндекс Карты, WhatsApp и Viber ведут на сайты и сервисы третьих лиц. Правила обработки данных на них Оператор не контролирует.</span></p>
+</section>
+<section><h3><span class="n">10.</span><span>Изменение политики</span></h3>
+<p class="c"><span class="n">10.1.</span><span class="t">Оператор вправе изменять политику. Новая редакция вступает в силу с момента публикации на Сайте, если в ней не указан другой срок.</span></p>
+<p class="c"><span class="n">10.2.</span><span class="t">По вопросам обработки данных можно обратиться к Оператору: Альтман Эвелина Давидовна, e-mail <span class="nw">chaykabn@mail.ru</span>, телефон <span class="nw">+7 (921) 982-88-13</span>.</span></p>
+</section>
+<div class="doc__end"><button class="btn btn--line btn--sm" type="button" data-act="close">Закрыть</button></div>
+</article></div></div>
+<div class="ovl ovl--doc" id="ovl-consent" role="dialog" aria-modal="true" aria-label="Согласие на обработку персональных данных" hidden>
+<div class="dlg dlg--doc">
+<div class="doc__bar"><span class="doc__name">Согласие на обработку данных</span><button class="x x--bar" type="button" data-act="close" aria-label="Закрыть"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<article class="doc">
+<h2 class="doc__title">Согласие на обработку персональных данных</h2>
+<p class="doc__sub">при оформлении заказа на сайте «Босоногая Чайка»</p>
+<p class="doc__date">Редакция от 26 сентября 2026 г.</p>
+<section>
+<p class="c"><span class="n">1.</span><span class="t">Отмечая поле «Даю согласие на обработку персональных данных» в форме заказа, я свободно, своей волей и в своём интересе даю индивидуальному предпринимателю Альтман Эвелина Давидовна, ИНН 745312232794, ОГРНИП 320745600096958, e-mail <span class="nw">chaykabn@mail.ru</span>, телефон <span class="nw">+7 (921) 982-88-13</span> (далее — Оператор), согласие на обработку моих персональных данных на условиях, указанных ниже.</span></p>
+<p class="c"><span class="n">2.</span><span class="t"><b>Цели обработки:</b> принять, подтвердить и выполнить мой заказ; связаться со мной по заказу; организовать доставку; рассмотреть мои обращения и претензии; выполнить требования законодательства по учёту и отчётности.</span></p>
+<p class="c"><span class="n">3.</span><span class="t"><b>Персональные данные:</b> имя; номер телефона; город и адрес доставки (при отправке); фамилия и отчество получателя, если их требует служба доставки; комментарий к заказу и переписка по заказу; состав и сумма заказа.</span></p>
+<p class="c"><span class="n">4.</span><span class="t"><b>Действия с данными:</b> сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передача (предоставление, доступ) службе доставки для доставки заказа, блокирование, удаление, уничтожение. Обработка смешанная: с использованием средств автоматизации и без них.</span></p>
+<p class="c"><span class="n">5.</span><span class="t"><b>Кому передаются данные:</b> службе доставки или почтовому оператору, которые доставят мой заказ, — в объёме, необходимом для доставки (имя получателя, телефон, адрес).</span></p>
+<p class="c"><span class="n">6.</span><span class="t"><b>Срок действия:</b> согласие действует со дня, когда я его дал, до достижения целей обработки, но не дольше трёх лет со дня исполнения заказа (если закон не требует хранить данные дольше), либо до тех пор, пока я его не отзову.</span></p>
+<p class="c"><span class="n">7.</span><span class="t"><b>Как отозвать:</b> написать на <span class="nw">chaykabn@mail.ru</span> или позвонить по <span class="nw">+7 (921) 982-88-13</span>, указав имя и телефон из заказа. Оператор прекратит обработку и уничтожит данные не позднее чем через 30 дней со дня получения отзыва, если закон не обязывает хранить часть данных.</span></p>
+<p class="c"><span class="n">8.</span><span class="t">Если я указываю данные другого человека (получателя заказа), я подтверждаю, что имею на это его согласие.</span></p>
+<p class="c"><span class="n">9.</span><span class="t">Порядок обработки данных и мои права описаны в <a href="#policy" data-act="doc-open" data-doc="policy">политике конфиденциальности</a>.</span></p>
+</section>
+<div class="doc__end"><button class="btn btn--line btn--sm" type="button" data-act="close">Закрыть</button></div>
+</article></div></div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.2l2.1 11h10.4l1.8-8H6.4"/><circle cx="9.5" cy="19.2" r="1.3"/><circle cx="16.5" cy="19.2" r="1.3"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7 3.5l2.6.7 1 3.4-1.8 1.5a11 11 0 0 0 5.1 5.1l1.5-1.8 3.4 1 .7 2.6c.2.8-.2 1.6-1 1.9-1.6.6-3.6.5-6-.6A17 17 0 0 1 4.6 10.5c-1.1-2.4-1.2-4.4-.6-6 .3-.8 1.1-1.2 1.9-1z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l.8 12.5h9.4L17.5 7M10 11v5M14 11v5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-gull" viewBox="0 0 64 64">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M27 44C25 49 22 53 22 58M22 58L17 61M22 58L22 62M22 58L27 60"/><path d="M37 43C34 49 34 54 34 58M34 58L29 61M34 58L34 62M34 58L39 60"/></g>
+    <rect x="6" y="45" width="52" height="3.5" fill="#c4271d" stroke="currentColor" stroke-width="1.3"/>
+    <path d="M20 7C23 5 26 7 27 11C28 16 27 22 29 26C33 32 43 32 55 29C54 36 48 42 39 45C29 48 22 45 18 40C15 35 16 28 17 22L17 13C17 10 18 8 20 7Z" fill="#ffffff" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M18 13L6 18L17 17Z" fill="#c4271d" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="23" cy="12" r="1.6" fill="#1b1516"/>
+    <path d="M29 27C36 32 46 32 54 30C51 37 43 41 36 42C31 38 29 33 29 27Z" fill="#c4271d" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M43 33L49 32M41 36L49 34M39 39L46 37" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square"/>
+  </symbol>
+</svg>
+
+<script>
+/* Данные магазина.
+   ЦЕНЫ: 12 000 ₽ у «Кони-солнцевороты» и «Солнце над Мезенью» — с магазина ВКонтакте (тарелка для пасты 27 см и
+   блюдо с мезенской росписью). Остальные цены ориентировочные, опираются на 2 700 ₽ за обеденную
+   тарелку «Страдающее средневековье» с Ярмарки Мастеров; их нужно подтвердить у мастера.
+   Размеры не указаны там, где их нет в открытых источниках. */
+
+var CATS = [
+  {id: "all", name: "Все"},
+  {id: "mezen", name: "Мезенская роспись"},
+  {id: "beasts", name: "Звери и бестиарий"},
+  {id: "cups", name: "Чашки"},
+  {id: "sets", name: "Наборы и магниты"}
+];
+
+var PRODUCTS = [
+  {id: "p01", cat: "mezen", name: "Кони-солнцевороты", kind: "Тарелка для пасты, мезенская роспись", price: 12000,
+   desc: "Мезенская роспись в красном и зелёном. По кругу бегут тонконогие кони, по краю идёт сетка из ромбов. Глубокая тарелка для пасты.",
+   spec: [["Диаметр", "27 см"], ["Роспись", "Мезенская, красная и зелёная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Тарелка с мезенской росписью: кони по кругу, кайма из красных и зелёных ромбов"},
+  {id: "p02", cat: "mezen", name: "Солнце над Мезенью", kind: "Блюдо, мезенская роспись", price: 12000,
+   desc: "В центре блюда красное «солнце» из тонких линий, вокруг него бежит ряд коней, а по борту идёт кайма из «зёрен».",
+   spec: [["Роспись", "Мезенская, красная и зелёная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Блюдо с мезенской росписью: красное солнце в центре, ряд коней и кайма из зёрен"},
+  {id: "p03", cat: "mezen", name: "Небесный конь", kind: "Тарелка, мезенская роспись", price: 12000,
+   desc: "Красные кони с чёрными ногами скачут по кругу, от центра расходится сетка, по борту идут лучи и ромбы. Красный и чёрный, как на северных прялках.",
+   spec: [["Роспись", "Мезенская, красная и чёрная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Тарелка с мезенской росписью: красные кони скачут по кругу, борт с лучами и ромбами"},
+
+  {id: "p04", cat: "beasts", name: "Заячья потеха", kind: "Блюдо с волнистым краем", price: 4200,
+   desc: "Зайцы играют против собак: вратари стоят в воротах, судья показывает красную карточку, мяч уже в игре. Волнистый край, зелёный круг.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Блюдо с волнистым краем: зайцы и собаки играют в футбол, судья с красной карточкой"},
+  {id: "p05", cat: "beasts", name: "Хозяин Студёного моря", kind: "Тарелка, звери и бестиарий", price: 3200,
+   desc: "Морж с бивнями взбирается по белым «ледяным горкам» с красными завитками. Красное кольцо в белую точку, зелёная кайма, чёрные колечки по краю.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Тарелка с моржом на белых ледяных горках, красное кольцо и зелёная кайма"},
+  {id: "p06", cat: "beasts", name: "Индрик-зверь", kind: "Тарелка, звери и бестиарий", price: 2900,
+   desc: "Лев бережно держит полосатого зверька. Вокруг — чёрные завитки-побеги, тёплая охра на белой глазури.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Белая тарелка со львом, который держит полосатого зверька, вокруг чёрные завитки"},
+  {id: "p07", cat: "beasts", name: "Полуночница", kind: "Тарелка, звери и бестиарий", price: 2700,
+   desc: "Серьёзная сова с круглыми жёлтыми глазами среди россыпи маленьких колечек. Сдержанные коричневые тона на белой глазури.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Белая тарелка с совой, вокруг россыпь маленьких колечек"},
+  {id: "p12", cat: "beasts", name: "Козёл-мореход", kind: "Тарелка, звери и бестиарий", price: 3600,
+   desc: "Козёл с рыбьим хвостом, свёрнутым в волны, — знак Козерога. Розовый хвост, синие волны, жёлтая кайма с белым узором.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Тарелка с козлом, у которого хвост свернулся в морские волны"},
+  {id: "p13", cat: "beasts", name: "Древо жизни", kind: "Тарелка, звери и бестиарий", price: 3200,
+   desc: "Две козы по сторонам растущего дерева на зелёном холме. Жёлтое кольцо, крупные листья и мелкие чёрные точки по краю.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Тарелка с двумя козами по сторонам дерева на зелёном холме"},
+  {id: "p14", cat: "beasts", name: "Заяц-удалец", kind: "Тарелка, звери и бестиарий", price: 2700,
+   desc: "Заяц стоит на задних лапах и держит теннисную ракетку. По светлому полю разбросаны чёрные точки.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Тарелка с зайцем, который держит теннисную ракетку"},
+
+  {id: "p09", cat: "cups", name: "Иван-чай", kind: "Кружка с растительным узором", price: 2400, unit: "за штуку",
+   desc: "Кружки и стакан с зелёным растительным узором: листья, лоза, змейка. Светлая глина и ручная роспись. На фото четыре разных рисунка, выберите свой.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   variants: ["С листьями", "Со змейкой", "С лозой", "Полосатый стакан"],
+   alt: "Четыре кружки и стакан с зелёным растительным узором"},
+  {id: "p10", cat: "cups", name: "Звериный хоровод", kind: "Стакан, роспись по светлой глине", price: 1900, unit: "за штуку",
+   desc: "Стаканы из светлой глины с красными птицами, медведем, оленем, рыбами и зайцами. На фото семь разных стаканов, выберите рисунок.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   variants: ["Красные птицы", "Медведь", "Белый зверь", "Огненная птица", "Олень и собака", "Рыба и лягушка", "Заяц и рыба"],
+   alt: "Семь стаканов из светлой глины, расписанных птицами, медведем, оленем и рыбами"},
+
+  {id: "p08", cat: "sets", name: "Теремок", kind: "Набор из шести предметов", price: 9500,
+   desc: "Две мелкие тарелки, две глубокие миски и два блюдца с зайцем, лисой, ежом и медведем. Надписи старинными буквами, светлая глазурь с крапом.",
+   spec: [["Состав", "6 предметов"], ["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   alt: "Набор из шести охристых тарелок и мисок с зайцем, лисой, ежом и медведем"},
+  {id: "p11", cat: "sets", name: "Студёный улов", kind: "Тарелка, роспись по глазури", price: 2200, unit: "за штуку",
+   desc: "Тарелки с красным кольцом в белую точку и рыбами среди пузырьков. На фото четыре разных рисунка, выберите тарелку.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   variants: ["Серо-голубая рыба", "Синяя чешуйчатая рыба", "Бурая рыба", "Бирюзовая рыба на охре"],
+   alt: "Четыре тарелки с красным кольцом: на каждой своя рыба, три тарелки белые, одна охристая"},
+  {id: "p15", cat: "sets", name: "Малые сказки", kind: "Плитка-магнит, ручная роспись", price: 450, unit: "за штуку",
+   desc: "Керамические плитки-магниты с зайцем, лисицей, ежом, мышью и пчелой. Подписи старинными буквами. Каждая плитка проходит два обжига.",
+   spec: [["Роспись", "Ручная"], ["Материал", "Керамика, глазурь"]],
+   variants: ["Заяц", "Лисица", "Ёж", "Мышь", "Пчела", "Заяц с арфой", "Саламандра"],
+   alt: "Россыпь керамических плиток-магнитов с зайцами, лисицами, ежами, мышами и пчёлами"}
+];
+
+/* Отзывы с Яндекс Карт (карточка «Босоногая Чайка», 19 отзывов, 4,9).
+   Тексты дословно, без смайлов; длинный сокращён до целых предложений; исправлены опечатки. */
+var REVIEWS = [
+  {who: "Юлия Ш.", when: "Июнь 2022",
+   text: "Прекрасное место с чудесной хозяйкой. Рекомендую обратить внимание на любопытные тарелки с изображениями средневековых зверей."},
+  {who: "Анна О.", when: "Март 2026",
+   text: "Купила тарелку с зайцем, не могу налюбоваться третий день)"},
+  {who: "Алёна Новосёлова", when: "Январь 2024",
+   text: "Самая красивая посуда в моём доме из этой мастерской. И кто видит, спрашивают, откуда у меня такая красота). Огромный бонус, что её ещё и своими руками можно попробовать сделать)."},
+  {who: "Лёлик Рысович", when: "Июнь 2026",
+   text: "Прекрасная керамика от прекрасной мастерицы!"},
+  {who: "Вера Макогоненко", when: "Октябрь 2024",
+   text: "Немножко сложно добираться, не совсем у метро, но сама хозяйка и её мастер-классы, и атмосфера её мастерской с лихвой компенсируют эти мелкие неудобства. Можно прийти на групповой или индивидуальный мастер-класс, есть гончарный круг, есть всё для ручной лепки, есть витрина, где можно купить подарки для себя и родных/друзей."},
+  {who: "Елена О.", when: "Июнь 2022",
+   text: "Классные штучки! Готова жить в вашей мастерской и всё скупить!!!"},
+  {who: "Виктория Е.", when: "Январь 2022",
+   text: "Совершенно чудесное душевное пространство с прекрасной Хозяйкой. Лина — волшебница! Все показала, обучила, чаем напоила, поддерживала и помогала верить в себя на протяжении процесса. Люблю это место. Жаль, что редко бываю в Петербурге!"},
+  {who: "Алина Кандрашева", when: "Август 2022",
+   text: "Тут очень душевно. Атмосфера прям располагает творить и вытворять. Работа с глиной очень умиротворяет. Для новичков есть мастер-классы и куча всего интересного. Лина-кудесница, подскажет, научит и вдохновит. Спасибо этому месту, ещё вернусь."}
+];
+
+var CONTACT = {
+  phone: "+7 (921) 982-88-13",
+  wa: "79219828813",
+  address: "проспект Елизарова, 36А, Санкт-Петербург"
+};
+
+/* Логика магазина: каталог, карточка, корзина, оформление, отзывы, меню.
+   Невидимые символы пишем эскейпами (\xa0), а не самими знаками. */
+(function () {
+  "use strict";
+
+  var NB = "\xa0";
+  var WJ = String.fromCharCode(0x2060);   // word joiner: не даёт перенести строку внутри «10:00—18:00»
+  var KEY_CART = "bch-cart-v1";
+  var KEY_FAV = "bch-fav-v1";
+
+  /* ---------- утилиты ---------- */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c];
+    });
+  }
+  function byId(list, id) {
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  var nf = new Intl.NumberFormat("ru-RU");
+  function money(n) { return nf.format(n).replace(/\s/g, NB) + NB + "₽"; }
+  function plural(n, f) {
+    var m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return f[0];
+    if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return f[1];
+    return f[2];
+  }
+  function load(key, def) {
+    try {
+      var v = JSON.parse(localStorage.getItem(key));
+      return v == null ? def : v;
+    } catch (e) { return def; }
+  }
+  function save(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* хранилище недоступно */ }
+  }
+
+  /* ---------- русская типографика ---------- */
+  var PREP = "в|во|к|ко|с|со|у|о|об|от|до|по|на|за|из|без|при|про|над|под|для|и|а|но|да|не|ни";
+  /* пробелы правим только обычные и неразрывные: перенос строки не трогаем */
+  var RE_PREP = new RegExp("(^|[ \\xa0(«„\\u2014])(" + PREP + ")[ ]+(?=[^\\s])", "gi");
+  var RE_PART = /[ ]+(же|бы|ли)(?=[\s,.;:!?)]|$)/gi;
+  var RE_DASH = /[ \xa0]+([—])/g;
+  var RE_RANGE = /([0-9A-Za-zЀ-ӿ])—([0-9A-Za-zЀ-ӿ])/g;
+  var RE_NUM =/(\d)[ ]+(?=[A-Za-zЀ-ӿ₽%°])/g;
+  /* «ст. 26.1», «п. 4», «№ 2463»: сокращение и число не разрываем */
+  var RE_ABBR = /(^|[ \xa0(«])(ст\.|п\.|пп\.|ч\.|№|§)[ ]+(?=\d)/g;
+  var RE_DATE = /(\d{1,2})[ \xa0](января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)[ \xa0](\d{4})[ \xa0]г\./g;
+  function typo(s) {
+    if (!s || s.length < 3) return s;
+    return s
+      .replace(/\s-\s/g, NB + "— ")
+      .replace(RE_DASH, NB + "$1")
+      .replace(RE_RANGE, "$1" + WJ + "—" + WJ + "$2")
+      .replace(RE_PREP, function (m, a, b) { return a + b + NB; })
+      .replace(RE_PREP, function (m, a, b) { return a + b + NB; })
+      .replace(RE_PART, NB + "$1")
+      .replace(RE_ABBR, function (m, a, b) { return a + b + NB; })
+      .replace(RE_DATE, "$1" + NB + "$2" + NB + "$3" + NB + "г.")
+      .replace(RE_NUM, "$1" + NB);
+  }
+  function typoTree(root) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var t = p.nodeName;
+        if (t === "SCRIPT" || t === "STYLE" || t === "TEXTAREA" || t === "TITLE" || t === "PRE") return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.length > 2 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function (node) {
+      var v = typo(node.nodeValue);
+      if (v !== node.nodeValue) node.nodeValue = v;
+    });
+  }
+
+  /* ---------- состояние ---------- */
+  var S = {
+    cat: "all",
+    sort: "def",
+    favOnly: false,
+    cart: load(KEY_CART, []).filter(function (l) { return l && byId(PRODUCTS, l.id) && l.q > 0; }),
+    fav: load(KEY_FAV, []).filter(function (id) { return byId(PRODUCTS, id); }),
+    openId: null,
+    variant: null,
+    step: "cart",
+    order: null
+  };
+  var stack = [];       // открытые окна, верхнее — последнее
+  var lastFocus = null;
+
+  /* ---------- каталог ---------- */
+  function visible() {
+    var a = PRODUCTS.filter(function (p) {
+      return (S.cat === "all" || p.cat === S.cat) && (!S.favOnly || S.fav.indexOf(p.id) > -1);
+    });
+    if (S.sort === "asc") a = a.slice().sort(function (x, y) { return x.price - y.price; });
+    if (S.sort === "desc") a = a.slice().sort(function (x, y) { return y.price - x.price; });
+    return a;
+  }
+  function heartBtn(id, on) {
+    return '<button class="heart" type="button" data-act="fav" data-id="' + id + '" aria-pressed="' + on + '" aria-label="' +
+      (on ? "Убрать из избранного" : "В избранное") + '"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg></button>';
+  }
+  function cardHTML(p) {
+    var on = S.fav.indexOf(p.id) > -1;
+    var hasV = p.variants && p.variants.length;
+    return '<li class="card">' +
+      '<div class="card__media">' +
+        '<button class="card__img" type="button" data-act="open" data-id="' + p.id + '" aria-label="Смотреть «' + esc(p.name) + '»">' +
+          '<img src="img/' + p.id + '-s.jpg" srcset="img/' + p.id + '-s.jpg 640w, img/' + p.id + '.jpg 1200w" sizes="(max-width:900px) 46vw, 380px" alt="' + esc(p.alt) + '" width="640" height="640" loading="lazy" decoding="async">' +
+        '</button>' + heartBtn(p.id, on) +
+      '</div>' +
+      '<h3 class="card__name"><button type="button" data-act="open" data-id="' + p.id + '">«' + esc(p.name) + '»</button></h3>' +
+      '<p class="card__kind">' + esc(p.kind) + '</p>' +
+      '<p class="card__price">' + (hasV ? "" : "") + money(p.price) + (p.unit ? "<small>" + esc(p.unit) + "</small>" : "") + '</p>' +
+      '<div class="card__row">' +
+        (hasV
+          ? '<button class="btn btn--line btn--sm" type="button" data-act="open" data-id="' + p.id + '">Выбрать<span class="lg"> рисунок</span></button>'
+          : '<button class="btn btn--red btn--sm" type="button" data-act="add" data-id="' + p.id + '">В корзину</button>') +
+      '</div></li>';
+  }
+  function renderTabs() {
+    $("#tabs").innerHTML = CATS.map(function (c) {
+      var sel = c.id === S.cat;
+      return '<button class="tab" type="button" data-act="tab" data-cat="' + c.id + '" aria-pressed="' + sel + '">' + esc(c.name) + '</button>';
+    }).join("");
+  }
+  function renderGrid() {
+    var list = visible();
+    var html = list.map(cardHTML).join("");
+    if (!list.length) {
+      html = '<li class="empty">' + (S.favOnly
+        ? "В избранном пока пусто. Отметьте сердечком вещи, которые понравились."
+        : "В этом разделе пока ничего нет.") + "</li>";
+    }
+    var g = $("#grid");
+    g.innerHTML = html;
+    typoTree(g);
+    $("#count").textContent = list.length + NB + plural(list.length, ["работа", "работы", "работ"]);
+    var fb = $("#fav-only");
+    fb.setAttribute("aria-pressed", String(S.favOnly));
+    $("#fav-n").textContent = S.fav.length ? "(" + S.fav.length + ")" : "";
+  }
+
+  /* ---------- избранное ---------- */
+  function toggleFav(id) {
+    var i = S.fav.indexOf(id);
+    if (i > -1) S.fav.splice(i, 1); else S.fav.push(id);
+    save(KEY_FAV, S.fav);
+    if (S.favOnly && !S.fav.length) S.favOnly = false;
+    renderGrid();
+    if (S.openId === id) renderProduct(id, true);
+  }
+
+  /* ---------- окна ---------- */
+  var FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  function lockScroll(on) { document.documentElement.classList.toggle("lock", on); }
+  function openOverlay(el) {
+    if (!stack.length) lastFocus = document.activeElement;
+    if (stack.indexOf(el) === -1) stack.push(el);
+    el.hidden = false;
+    el.scrollTop = 0;
+    lockScroll(true);
+    var first = $(".x", el) || $(FOCUSABLE, el);
+    if (first) first.focus({preventScroll: true});
+  }
+  function closeOverlay(el) {
+    el = el || stack[stack.length - 1];
+    if (!el) return;
+    el.hidden = true;
+    var i = stack.indexOf(el);
+    if (i > -1) stack.splice(i, 1);
+    if (el.id === "ovl-product") S.openId = null;
+    if (!stack.length) {
+      lockScroll(false);
+      if (lastFocus && document.contains(lastFocus)) lastFocus.focus({preventScroll: true});
+    } else {
+      var top = stack[stack.length - 1];
+      var f = $(".x", top) || $(FOCUSABLE, top);
+      if (f) f.focus({preventScroll: true});
+    }
+  }
+  document.addEventListener("keydown", function (e) {
+    var menu = $("#menu");
+    if (e.key === "Escape") {
+      if (stack.length) { closeOverlay(); e.preventDefault(); }
+      else if (!menu.hidden) { closeMenu(); e.preventDefault(); }
+      return;
+    }
+    if (e.key === "Tab") {
+      var top = stack.length ? stack[stack.length - 1] : (!menu.hidden ? menu : null);
+      if (!top) return;
+      var items = $$(FOCUSABLE, top).filter(function (n) { return n.offsetParent !== null; });
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+      else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+    }
+  });
+  $$(".ovl").forEach(function (o) {
+    o.addEventListener("mousedown", function (e) { if (e.target === o) closeOverlay(o); });
+  });
+
+  function openMenu() {
+    var m = $("#menu");
+    m.hidden = false;
+    lockScroll(true);
+    $$('[data-act="menu-open"]').forEach(function (b) { b.setAttribute("aria-expanded", "true"); });
+    var b = $(".burger", m);
+    if (b) b.focus({preventScroll: true});
+  }
+  function closeMenu() {
+    var m = $("#menu");
+    if (m.hidden) return;
+    m.hidden = true;
+    if (!stack.length) lockScroll(false);
+    $$('[data-act="menu-open"]').forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
+  }
+
+  /* ---------- уведомление ---------- */
+  var toastTimer = null;
+  function toast(msg, actLabel, actFn) {
+    var t = $("#toast");
+    t.innerHTML = "<span></span>" + (actLabel ? '<button type="button">' + esc(actLabel) + "</button>" : "");
+    $("span", t).textContent = msg;
+    if (actLabel) $("button", t).addEventListener("click", function () { t.classList.remove("is-on"); actFn(); });
+    t.classList.add("is-on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove("is-on"); }, actLabel ? 4200 : 2600);
+  }
+
+  /* ---------- карточка товара ---------- */
+  function related(p) {
+    var same = PRODUCTS.filter(function (x) { return x.id !== p.id && x.cat === p.cat; });
+    var rest = PRODUCTS.filter(function (x) { return x.id !== p.id && x.cat !== p.cat; });
+    return same.concat(rest).slice(0, 3);
+  }
+  function renderProduct(id, keepZoom) {
+    var p = byId(PRODUCTS, id);
+    var on = S.fav.indexOf(id) > -1;
+    var zoomed = keepZoom && $(".pm__img") && $(".pm__img").classList.contains("is-zoom");
+    var v = "";
+    if (p.variants) {
+      v = '<div class="var"><h3 id="var-h">Рисунок</h3><div class="chips" role="radiogroup" aria-labelledby="var-h">' +
+        p.variants.map(function (name) {
+          var sel = name === S.variant;
+          return '<button class="chip" type="button" role="radio" data-act="variant" data-v="' + esc(name) + '" aria-checked="' + sel + '">' + esc(name) + "</button>";
+        }).join("") + "</div></div>";
+    }
+    var specs = '<dl class="spec">' + p.spec.map(function (r) {
+      return "<div><dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd></div>";
+    }).join("") + (p.unit ? "<div><dt>Цена</dt><dd>" + esc(p.unit) + "</dd></div>" : "") + "</dl>";
+    var rel = related(p).map(function (r) {
+      return '<li><button class="mini" type="button" data-act="open" data-id="' + r.id + '"><img src="img/' + r.id + '-s.jpg" alt="' + esc(r.alt) + '" width="640" height="640" loading="lazy"><b>«' + esc(r.name) + "»</b><span>" + money(r.price) + (r.unit ? " " + esc(r.unit) : "") + "</span></button></li>";
+    }).join("");
+    $("#pm-view").innerHTML =
+      '<div class="pm">' +
+        '<div class="pm__img' + (zoomed ? " is-zoom" : "") + '" id="pm-img"><img src="img/' + p.id + '.jpg" alt="' + esc(p.alt) + '" width="1200" height="1200"><span class="pm__hint">Нажмите, чтобы рассмотреть роспись</span></div>' +
+        '<div class="pm__info">' +
+          '<h2 class="pm__title">«' + esc(p.name) + "»</h2>" +
+          '<p class="pm__kind">' + esc(p.kind) + "</p>" +
+          '<p class="pm__desc">' + esc(p.desc) + "</p>" +
+          specs + v +
+          '<div class="pm__buy">' +
+            '<span class="pm__price">' + money(p.price) + (p.unit ? "<small>" + esc(p.unit) + "</small>" : "") + "</span>" +
+            heartBtn(p.id, on) +
+            '<button class="btn btn--red" type="button" data-act="add" data-id="' + p.id + '">В корзину</button>' +
+          "</div>" +
+          '<p class="pm__note">Рисунок и оттенок глазури у каждой вещи чуть отличаются от фото. Наличие подтвердит мастер, когда получит заказ.</p>' +
+        "</div>" +
+        '<div class="more"><h3>Вас может заинтересовать</h3><ul>' + rel + "</ul></div>" +
+      "</div>";
+    typoTree($("#pm-view"));
+  }
+  function openProduct(id) {
+    var p = byId(PRODUCTS, id);
+    if (!p) return;
+    S.openId = id;
+    S.variant = p.variants ? p.variants[0] : null;
+    renderProduct(id);
+    var ov = $("#ovl-product");
+    if (stack.indexOf(ov) === -1) openOverlay(ov);
+    else { ov.scrollTop = 0; }
+  }
+  document.addEventListener("pointermove", function (e) {
+    var box = e.target.closest && e.target.closest(".pm__img.is-zoom");
+    if (!box) return;
+    var r = box.getBoundingClientRect();
+    box.firstElementChild.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + "% " + ((e.clientY - r.top) / r.height * 100) + "%";
+  });
+
+  /* ---------- корзина ---------- */
+  function lineKey(l) { return l.id + "|" + (l.v || ""); }
+  function cartCount() { return S.cart.reduce(function (s, l) { return s + l.q; }, 0); }
+  function cartTotal() {
+    return S.cart.reduce(function (s, l) { return s + byId(PRODUCTS, l.id).price * l.q; }, 0);
+  }
+  function saveCart() {
+    save(KEY_CART, S.cart);
+    var n = cartCount();
+    var b = $("#cart-n");
+    b.textContent = n;
+    b.hidden = !n;
+    $(".cartbtn").setAttribute("aria-label", n ? "Корзина, " + n + " " + plural(n, ["товар", "товара", "товаров"]) : "Корзина");
+  }
+  function addToCart(id, variant) {
+    var p = byId(PRODUCTS, id);
+    if (!p) return;
+    var v = p.variants ? (variant || p.variants[0]) : "";
+    var found = null;
+    S.cart.forEach(function (l) { if (l.id === id && (l.v || "") === v) found = l; });
+    if (found) found.q += 1; else S.cart.push({id: id, v: v, q: 1});
+    saveCart();
+    toast("«" + p.name + "»" + (v ? ", " + v.toLowerCase() : "") + " — в корзине", "Корзина", function () { openCart("cart"); });
+  }
+  function changeQty(key, d) {
+    S.cart.forEach(function (l) { if (lineKey(l) === key) l.q = Math.max(1, Math.min(99, l.q + d)); });
+    saveCart();
+    renderCart();
+    var again = $$('[data-act="qty"]').filter(function (b) {
+      return b.getAttribute("data-key") === key && parseInt(b.getAttribute("data-d"), 10) === d;
+    })[0];
+    if (again) again.focus({preventScroll: true});
+  }
+  function removeLine(key) {
+    S.cart = S.cart.filter(function (l) { return lineKey(l) !== key; });
+    saveCart();
+    renderCart();
+  }
+  function openCart(step) {
+    var pm = $("#ovl-product");
+    if (stack.indexOf(pm) > -1) closeOverlay(pm);
+    $("#toast").classList.remove("is-on");
+    S.step = step || "cart";
+    if (!S.cart.length) S.step = "cart";
+    renderCart();
+    var ov = $("#ovl-cart");
+    if (stack.indexOf(ov) === -1) openOverlay(ov); else ov.scrollTop = 0;
+    closeMenu();
+  }
+
+  function linesHTML() {
+    return '<ul class="lines">' + S.cart.map(function (l) {
+      var p = byId(PRODUCTS, l.id);
+      var key = esc(lineKey(l));
+      return '<li class="line">' +
+        '<img src="img/' + p.id + '-s.jpg" alt="" width="76" height="76">' +
+        '<div class="line__t"><b>«' + esc(p.name) + "»</b><span>" + esc(p.kind) + "</span>" + (l.v ? "<span>Рисунок: " + esc(l.v) + "</span>" : "") + "</div>" +
+        '<div class="qty"><button type="button" data-act="qty" data-d="-1" data-key="' + key + '" aria-label="Меньше"><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg></button>' +
+          "<output aria-live=\"polite\">" + l.q + '</output><button type="button" data-act="qty" data-d="1" data-key="' + key + '" aria-label="Больше"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></div>' +
+        '<div class="line__p">' + money(p.price * l.q) + "</div>" +
+        '<button class="line__x" type="button" data-act="remove" data-key="' + key + '" aria-label="Убрать из корзины"><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg></button>' +
+      "</li>";
+    }).join("") + "</ul>";
+  }
+  function renderCart() {
+    var box = $("#cart-view");
+    if (S.step === "form" && S.cart.length) { renderForm(box); }
+    else if (S.step === "done" && S.order) { renderDone(box); }
+    else if (!S.cart.length) {
+      box.innerHTML = '<h2 class="sheet__title" id="cart-title">Корзина</h2>' +
+        '<div class="cart-empty"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-gull"/></svg>' +
+        "<p>Пока пусто. Загляните в каталог: там кони с Мезени и звери из бестиария.</p>" +
+        '<a class="btn btn--red" href="#catalog" data-act="close-all">В каталог</a></div>';
+    } else {
+      var total = cartTotal();
+      box.innerHTML = '<h2 class="sheet__title" id="cart-title">Корзина</h2>' + linesHTML() +
+        '<dl class="sum">' +
+          "<div><dt>Стоимость товаров</dt><dd>" + money(total) + "</dd></div>" +
+          "<div><dt>Доставка</dt><dd>согласуем при подтверждении</dd></div>" +
+          '<div class="tot"><dt>Итого</dt><dd>' + money(total) + "</dd></div>" +
+        "</dl>" +
+        '<div class="sheet__cta"><button class="btn btn--red" type="button" data-act="checkout">Оформить заказ</button>' +
+        '<button class="link" type="button" data-act="close-all">Продолжить покупки</button></div>' +
+        '<p class="sheet__note">Оплаты на сайте нет. Мастер подтвердит наличие и сроки, а способ оплаты и стоимость доставки согласует с вами лично.</p>';
+    }
+    typoTree(box);
+  }
+
+  function renderForm(box) {
+    var total = cartTotal();
+    box.innerHTML = '<h2 class="sheet__title" id="cart-title">Оформление заказа</h2>' +
+      '<form class="frame" id="order-form" novalidate>' +
+        "<h3>Как с вами связаться</h3>" +
+        '<div class="row2">' +
+          '<label class="field" id="w-name"><span class="sr">Имя</span><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Имя" maxlength="60"></label>' +
+          '<label class="field" id="w-phone"><span class="sr">Телефон</span><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="18"></label>' +
+        "</div>" +
+        "<h3>Как получить заказ</h3>" +
+        '<div class="seg" role="radiogroup" aria-label="Способ получения">' +
+          '<label><input type="radio" name="dlv" value="pickup" checked><span>Самовывоз из мастерской</span></label>' +
+          '<label><input type="radio" name="dlv" value="ship"><span>Отправка по России</span></label>' +
+        "</div>" +
+        '<p class="hint" id="dlv-hint">Мастерская: проспект Елизарова, 36А. Пн—сб 10:00—18:00, вс 12:00—18:00. Когда заказ будет готов, мастер напишет или позвонит.</p>' +
+        '<div class="row2" id="ship-box" hidden>' +
+          '<label class="field" id="w-city"><span class="sr">Город</span><input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Город"></label>' +
+          '<label class="field" id="w-addr"><span class="sr">Адрес доставки</span><input id="f-addr" name="addr" type="text" autocomplete="street-address" placeholder="Улица, дом, квартира"></label>' +
+        "</div>" +
+        "<h3>Комментарий к заказу</h3>" +
+        '<label class="field"><span class="sr">Комментарий</span><textarea id="f-comment" name="comment" placeholder="Пожелания по рисунку, подарочная упаковка, удобное время для звонка"></textarea></label>' +
+        '<label class="chk" id="w-offer"><input type="checkbox" id="f-offer"><span>Принимаю условия <a href="#offer" data-act="doc-open" data-doc="offer">публичной оферты</a></span></label>' +
+        '<label class="chk" id="w-consent"><input type="checkbox" id="f-consent"><span>Даю <a href="#consent" data-act="doc-open" data-doc="consent">согласие на обработку персональных данных</a>. Как они используются, описано в <a href="#policy" data-act="doc-open" data-doc="policy">политике конфиденциальности</a></span></label>' +
+        '<div class="err" id="f-err" role="alert"></div>' +
+        '<div class="frame__cta"><button class="btn btn--red" type="submit">Подтвердить заказ · ' + money(total) + "</button>" +
+        '<button class="link" type="button" data-act="back-cart">Вернуться в корзину</button></div>' +
+      "</form>";
+    typoTree(box);
+    $("#f-phone").addEventListener("input", function (e) {
+      var el = e.target, d = el.value.replace(/\D/g, "");
+      if (!d) { el.value = ""; return; }
+      el.value = fmtPhone(d);
+    });
+    $$('input[name="dlv"]').forEach(function (r) {
+      r.addEventListener("change", function () {
+        var ship = $('input[name="dlv"]:checked').value === "ship";
+        $("#ship-box").hidden = !ship;
+        $("#dlv-hint").hidden = ship;
+      });
+    });
+    $("#order-form").addEventListener("submit", submitOrder);
+    var n = $("#f-name");
+    if (n) n.focus({preventScroll: true});
+  }
+  function fmtPhone(d) {
+    if (d[0] === "8") d = "7" + d.slice(1);
+    if (d[0] !== "7") d = "7" + d;
+    d = d.slice(0, 11);
+    var out = "+7";
+    if (d.length > 1) out += " (" + d.slice(1, 4);
+    if (d.length >= 4) out += ")";
+    if (d.length > 4) out += " " + d.slice(4, 7);
+    if (d.length > 7) out += "-" + d.slice(7, 9);
+    if (d.length > 9) out += "-" + d.slice(9, 11);
+    return out;
+  }
+  function mark(id, bad) { var w = $(id); if (w) w.classList.toggle("is-bad", !!bad); }
+  function submitOrder(e) {
+    e.preventDefault();
+    var name = $("#f-name").value.trim();
+    var phone = $("#f-phone").value.trim();
+    var ship = $('input[name="dlv"]:checked').value === "ship";
+    var city = ship ? $("#f-city").value.trim() : "";
+    var addr = ship ? $("#f-addr").value.trim() : "";
+    var comment = $("#f-comment").value.trim();
+    var ok = $("#f-consent").checked;
+    var offer = $("#f-offer").checked;
+    var digits = phone.replace(/\D/g, "");
+    var bad = [];
+    mark("#w-name", name.length < 2); if (name.length < 2) bad.push("имя");
+    mark("#w-phone", digits.length < 11); if (digits.length < 11) bad.push("телефон полностью");
+    mark("#w-city", ship && !city); mark("#w-addr", ship && !addr);
+    if (ship && (!city || !addr)) bad.push("город и адрес");
+    mark("#w-offer", !offer);
+    mark("#w-consent", !ok);
+    var err = $("#f-err");
+    if (bad.length) { err.textContent = "Укажите " + bad.join(", ") + "."; return; }
+    if (!offer || !ok) {
+      err.textContent = !offer && !ok ? "Нужно принять условия оферты и дать согласие на обработку персональных данных."
+        : (!offer ? "Нужно принять условия оферты." : "Нужно согласие на обработку персональных данных.");
+      return;
+    }
+    err.textContent = "";
+    var lines = S.cart.map(function (l, i) {
+      var p = byId(PRODUCTS, l.id);
+      return (i + 1) + ". «" + p.name + "»" + (l.v ? " (" + l.v.toLowerCase() + ")" : "") + " — " + l.q + " × " + money(p.price) + " = " + money(p.price * l.q);
+    });
+    var text = "Здравствуйте! Хочу заказать:\n" + lines.join("\n") + "\nИтого: " + money(cartTotal()) + "\n\n" +
+      "Имя: " + name + "\nТелефон: " + phone + "\n" +
+      "Получение: " + (ship ? "отправка по России, " + city + ", " + addr : "самовывоз из мастерской") +
+      (comment ? "\nКомментарий: " + comment : "") +
+      "\n\nУсловия оферты принимаю. Согласие на обработку персональных данных даю.";
+    S.order = text;
+    S.step = "done";
+    renderCart();
+    $("#ovl-cart").scrollTop = 0;
+  }
+  function renderDone(box) {
+    var link = "https://wa.me/" + CONTACT.wa + "?text=" + encodeURIComponent(S.order);
+    box.innerHTML = '<div class="done"><h2 class="sheet__title" id="cart-title">Заказ собран</h2>' +
+      "<p>Пока он никуда не отправлен. Самый быстрый способ&nbsp;— отправить текст мастеру в WhatsApp. Можно и скопировать его, чтобы написать в другом мессенджере.</p>" +
+      '<pre class="order" id="order-text"></pre>' +
+      '<div class="done__act"><a class="btn btn--red" href="' + link + '" target="_blank" rel="noopener">Отправить в WhatsApp</a>' +
+      '<button class="btn btn--line" type="button" data-act="copy-order">Скопировать текст</button></div>' +
+      '<p class="hint hint--call">Или позвоните мастеру:</p>' +
+      '<a class="tel" href="tel:+' + CONTACT.wa + '">' + CONTACT.phone + "</a>" +
+      '<div class="sheet__cta"><button class="link" type="button" data-act="clear-cart">Очистить корзину и закрыть</button>' +
+      '<button class="link" type="button" data-act="back-cart">Изменить заказ</button></div></div>';
+    $("#order-text").textContent = S.order;
+    typoTree(box);
+  }
+  function copyOrder() {
+    var el = $("#order-text");
+    function sel() {
+      try {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        return document.execCommand("copy");
+      } catch (e) { return false; }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(S.order).then(function () { toast("Текст заказа скопирован"); },
+        function () { toast(sel() ? "Текст заказа скопирован" : "Текст выделен: скопируйте его (Ctrl+C)"); });
+    } else {
+      toast(sel() ? "Текст заказа скопирован" : "Текст выделен: скопируйте его (Ctrl+C)");
+    }
+  }
+
+  /* ---------- отзывы ---------- */
+  function renderReviews() {
+    var box = $("#rev-list");
+    box.innerHTML = REVIEWS.map(function (r) {
+      return '<figure class="q"><blockquote>' + esc(r.text) + "</blockquote>" +
+        '<figcaption><span class="who">' + esc(r.who) + '</span><span class="when">' + esc(r.when) + "</span></figcaption></figure>";
+    }).join("");
+    typoTree(box);
+  }
+
+  /* ---------- действия ---------- */
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-act]");
+    if (!t) {
+      var z = e.target.closest("#pm-img");
+      if (z) z.classList.toggle("is-zoom");
+      return;
+    }
+    var act = t.getAttribute("data-act"), id = t.getAttribute("data-id");
+    switch (act) {
+      case "tab":
+        S.cat = t.getAttribute("data-cat");
+        renderTabs(); renderGrid();
+        var sel = $('.tab[aria-pressed="true"]'); if (sel) sel.focus({preventScroll: true});
+        break;
+      case "open": openProduct(id); break;
+      case "add":
+        addToCart(id, id === S.openId ? S.variant : null);
+        break;
+      case "variant":
+        S.variant = t.getAttribute("data-v");
+        $$(".chip").forEach(function (c) { c.setAttribute("aria-checked", String(c === t)); });
+        break;
+      case "fav": toggleFav(id); break;
+      case "fav-filter":
+        S.favOnly = !S.favOnly;
+        if (S.favOnly && !S.fav.length) toast("Отметьте сердечком вещи, которые понравились");
+        renderGrid();
+        break;
+      case "cart-open": openCart("cart"); break;
+      case "close": closeOverlay(t.closest(".ovl")); break;
+      case "close-all":
+        while (stack.length) closeOverlay();
+        break;
+      case "qty": changeQty(t.getAttribute("data-key"), parseInt(t.getAttribute("data-d"), 10)); break;
+      case "remove": removeLine(t.getAttribute("data-key")); break;
+      case "checkout": S.step = "form"; renderCart(); $("#ovl-cart").scrollTop = 0; break;
+      case "back-cart": S.step = "cart"; renderCart(); $("#ovl-cart").scrollTop = 0; break;
+      case "copy-order": copyOrder(); break;
+      case "clear-cart":
+        S.cart = []; S.order = null; S.step = "cart"; saveCart();
+        while (stack.length) closeOverlay();
+        toast("Корзина очищена");
+        break;
+      case "doc-open": e.preventDefault(); openOverlay($("#ovl-" + t.getAttribute("data-doc"))); break;
+      case "menu-open": openMenu(); break;
+      case "menu-close": closeMenu(); break;
+    }
+    if ((act === "close-all") && t.tagName === "A") { /* переход к #catalog выполнит браузер */ }
+  });
+  $("#sort").addEventListener("change", function (e) { S.sort = e.target.value; renderGrid(); });
+  /* ---------- старт ---------- */
+  renderTabs();
+  renderGrid();
+  renderReviews();
+  saveCart();
+  typoTree($("#main"));
+  typoTree($(".ftr"));
+  typoTree($("#menu"));
+  ["offer", "policy", "consent"].forEach(function (d) { typoTree($("#ovl-" + d)); });
+})();
+</script>
